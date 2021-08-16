@@ -1,2 +1,2 @@
 # SoftUni_courses
-Add SoftUni exams, exercises, labs
+This Repo holds  SoftUni exams, exercises, labs
