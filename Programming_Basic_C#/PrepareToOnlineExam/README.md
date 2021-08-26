@@ -1,2 +1,2 @@
 # Prepare to online exam
-conditionss
+conditions
