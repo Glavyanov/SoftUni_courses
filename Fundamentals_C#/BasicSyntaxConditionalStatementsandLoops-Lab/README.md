@@ -4,9 +4,20 @@ for Basic Syntax, Conditional Statements and Loops - Lab
 
 
 Lab: Intro and Basic Syntax
+
+
 Problems for in-class lab for the "C#  Fundamentals" course @ SoftUni
+
+
 You can check your solutions in Judge
+
+
+
 1.	Student Information
+
+
+
+
 You will be given 3 lines of input – student name, age and average grade. Your task is to print all the info about the student in the following format: "Name: {student name}, Age: {student age}, Grade: {student grade}".
 Examples
 Input	Output
