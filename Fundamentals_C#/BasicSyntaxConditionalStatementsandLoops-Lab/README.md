@@ -244,6 +244,7 @@ class HolidaysBetweenTwoDates
     }
 }
 Hints
+
 There are 4 mistakes in the code. You’ve got to use the debugger to find them and fix them. After you do that, submit your fixed code in the judge contest: https://judge.softuni.bg/Contests/Practice/Index/304#8.
 
 
