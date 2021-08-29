@@ -30,6 +30,9 @@ Steve
 Marry
 12
 6.00	Name: Marry, Age: 12, Grade: 6.00
+
+
+
 2.	Passed
 Write a program, which takes as an input a grade and prints "Passed!" if the grade is equal or more than 3.00.
 Input
@@ -42,7 +45,9 @@ Input	Output		Input	Output
 Solution
 We need to take as an input a floating-point number from the console. We will use double.Parse() to convert string to double, which we receive from Console.ReadLine(). After that we compare the grade with 3.00 and prints the result only if the condition returns true.
  
-
+ 
+ 
+ 
 3.	Passed or Failed
 Modify the above program, so it will print "Failed!" if the grade is lower than 3.00.
 Input
@@ -54,6 +59,9 @@ Input	Output		Input	Output
 5.32	Passed!		2.36	Failed!
 Solution
 Again, we need to take floating-point number from the console. After that print in the else statement the appropriate message.
+ 
+ 
+ 
  
 4.	Back in 30 Minutes
 Every time Stamat tries to pay his bills he sees on the cash desk the sign: "I will be back in 30 minutes". One day Stamat was sick of waiting and decided he needs a program, which prints the time after 30 minutes. That way he won’t have to wait on the desk and come at the appropriate time. He gave the assignment to you, so you have to do it. 
@@ -74,6 +82,10 @@ Input	Output		Input	Output		Input	Output		Input	Output		Input	Output
 32	12:02
 Hints
 •	Add 30 minutes to the initial minutes, which you receive from the console. If the minutes are more than 59 – increase the hours with 1 and decrease the minutes with 60. The same way check if the hours are more than 23. When you print check for leading zero.
+
+
+
+
 5.	Month Printer
 Write a program, which takes an integer from the console and prints the corresponding month. If the number is more than 12 or less than 1 print "Error!".
 Input
@@ -84,6 +96,9 @@ Examples
 Input	Output		Input	Output
 2	February		13	Error!
 Solution
+
+
+
  
 6.	Foreign Languages
 Write a program, which prints the language, that a given country speaks. You can receive only the following combinations: English is spoken in England and USA; Spanish is spoken in Spain, Argentina and Mexico; for the others, we should print "unknown".
@@ -96,6 +111,11 @@ Input	Output		Input	Output
 USA	English		Germany	unknown
 Hint
 Think how you can merge multiple cases, in order to avoid writing more code than you need to.
+
+
+
+
+
 7.	Theatre Promotions
 A theatre is doing a ticket sale, but they need a program to calculate the price of a single ticket. If the given age does not fit one of the categories, you should print "Error!".  You can see the prices in the table below:
 Day / Age	0 <= age <= 18	18 < age <= 64	64 < age <= 122
@@ -127,9 +147,16 @@ Think where and how you can use logical operators for the other cases.
 Step 3. Print the Result
 We can check if the price has a value different, than the initial one. If It it does, that means we got a valid combination of day and age and the price of the ticket is saved in the price variable. If the price has a value of 0, then none of the cases got hit, therefore we have to print the error message.
  
+ 
+ 
+ 
 8.	Divisible by 3
 Write a program, which prints all the numbers from 1 to 100, which are divisible by 3. You have to use a single for loop. The program should not receive input.
 Solution
+ 
+ 
+ 
+ 
  
 9.	Sum of Odd Numbers
 Write a program that prints the next n odd numbers (starting from 1) and on the last row prints the sum of them.
@@ -152,6 +179,11 @@ Sum: 25		3	1
 Sum: 9
 
 Solution
+ 
+ 
+ 
+ 
+ 
  
 10.	 Multiplication Table
 You will receive an integer as an input from the console. Print the 10 times table for this integer. See the examples below for more information.
@@ -181,6 +213,12 @@ Input	Output		Input	Output
 2 X 8 = 16
 2 X 9 = 18
 2 X 10 = 20
+
+
+
+
+
+
 11.	Multiplication Table 2.0
 Rewrite you program so it can receive the multiplier from the console. Print the table from the given multiplier to 10. If the given multiplier is more than 10 - print only one row with the integer, the given multiplier and the product. See the examples below for more information.
 Output
@@ -208,6 +246,11 @@ Input	Output		Input	Output		Input	Output
 2 X 9 = 18
 2 X 10 = 20		2
 14	2 X 14 = 28
+
+
+
+
+
 12.	Even Number
 Take as an input an even number and print its absolute value. If the number is odd, print "Please write an even number." and continue reading numbers.
 Examples
@@ -217,6 +260,10 @@ Input	Output		Input	Output
 6	Please write an even number.
 Please write an even number.
 The number is: 6		-6	The number is: 6
+
+
+
+
 
 13.	Debug the Code: Holidays Between Two Dates
 You are assigned to find and fix the bugs in an existing piece of code, using the Visual Studio debugger. You should trace the program execution to find the lines of code that produce incorrect or unexpected results.
