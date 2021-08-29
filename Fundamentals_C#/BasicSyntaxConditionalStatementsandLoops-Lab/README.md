@@ -19,19 +19,68 @@ You can check your solutions in Judge
 
 
 You will be given 3 lines of input – student name, age and average grade. Your task is to print all the info about the student in the following format: "Name: {student name}, Age: {student age}, Grade: {student grade}".
-Examples
-Input	Output
-John
-15
-5.40	Name: John, Age: 15, Grade: 5.40
-Steve
-16
-2.50	Name: Steve, Age: 16, Grade: 2.50
-Marry
-12
-6.00	Name: Marry, Age: 12, Grade: 6.00
-
-
+<h1>
+"Examples"
+</h1>
+<table width="1022"> 
+  <tbody>
+    <tr>
+     <td width="211"> 
+      <p>
+       <strong>Input</strong> 
+      </p>  
+     </td>
+     <td width="811"> 
+      <p>
+       <strong>Output</strong> 
+      </p>  
+     </td>
+    </tr>
+    <tr>
+     <td width="211"> 
+      <p>
+       "John"
+       <br>
+       "15"
+       <br>
+       "5.40"
+      </p> 
+     </td>
+     <td width="811"> 
+       <p>Name: John, Age: 15, Grade: 5.40</p>
+     </td>
+    </tr>
+    <tr>
+     <td width="211"> 
+      <p>
+       "Steve"
+       <br>
+       "16"
+       <br>
+       "2.50"
+      </p> 
+     </td>
+     <td width="811"> 
+       <p>Name: Steve, Age: 16, Grade: 2.50</p>
+     </td>
+    </tr>
+    <tr>
+     <td width="211"> 
+      <p>
+       "Marry"
+       <br>
+       "12"
+       <br>
+       "6.00"
+      </p> 
+     </td>
+     <td width="811"> 
+       <p>Name: Marry, Age: 12, Grade: 6.00</p>
+     </td>
+    </tr>
+  </tbody>
+ </table>
+	
 
 # 2.	Passed
 Write a program, which takes as an input a grade and prints "Passed!" if the grade is equal or more than 3.00.
