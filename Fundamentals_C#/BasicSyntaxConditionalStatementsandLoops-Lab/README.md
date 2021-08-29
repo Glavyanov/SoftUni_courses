@@ -22,7 +22,7 @@ You will be given 3 lines of input – student name, age and average grade. Your
 <h1>
 "Examples"
 </h1>
-<table width="1022"> 
+<table width="522"> 
   <tbody>
     <tr>
      <td width="211"> 
@@ -30,7 +30,7 @@ You will be given 3 lines of input – student name, age and average grade. Your
        <strong>Input</strong> 
       </p>  
      </td>
-     <td width="811"> 
+     <td width="311"> 
       <p>
        <strong>Output</strong> 
       </p>  
@@ -39,42 +39,42 @@ You will be given 3 lines of input – student name, age and average grade. Your
     <tr>
      <td width="211"> 
       <p>
-       "John"
+       John
        <br>
-       "15"
+       15
        <br>
-       "5.40"
+       5.40
       </p> 
      </td>
-     <td width="811"> 
+     <td width="311"> 
        <p>Name: John, Age: 15, Grade: 5.40</p>
      </td>
     </tr>
     <tr>
      <td width="211"> 
       <p>
-       "Steve"
+       Steve
        <br>
-       "16"
+       16
        <br>
-       "2.50"
+       2.50
       </p> 
      </td>
-     <td width="811"> 
+     <td width="311"> 
        <p>Name: Steve, Age: 16, Grade: 2.50</p>
      </td>
     </tr>
     <tr>
      <td width="211"> 
       <p>
-       "Marry"
+       Marry
        <br>
-       "12"
+       12
        <br>
-       "6.00"
+       6.00
       </p> 
      </td>
-     <td width="811"> 
+     <td width="311"> 
        <p>Name: Marry, Age: 12, Grade: 6.00</p>
      </td>
     </tr>
