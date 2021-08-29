@@ -75,10 +75,14 @@ Constraints
 Examples
 Input	Output		Input	Output		Input	Output		Input	Output		Input	Output
 1
-46	2:16		0
-01	0:31		23
-59	0:29		11
-08	11:38		11
+46	2:16	
+0
+01	0:31		
+23
+59	0:29	
+11
+08	11:38		
+11
 32	12:02
 Hints
 •	Add 30 minutes to the initial minutes, which you receive from the console. If the minutes are more than 59 – increase the hours with 1 and decrease the minutes with 60. The same way check if the hours are more than 23. When you print check for leading zero.
