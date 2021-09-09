@@ -33,9 +33,10 @@ namespace _06.Wardrobe
             string clothInfo = commandInfo[1];
             foreach (var item in wardrobe)
             {
+                Console.WriteLine($"{item.Key} clothes:");
+
                 if (item.Key == colorInfo)
                 {
-                    Console.WriteLine($"{colorInfo} clothes:");
                     foreach (var element in item.Value)
                     {
                         if (element.Key == clothInfo)
@@ -50,7 +51,6 @@ namespace _06.Wardrobe
                 }
                 else
                 {
-                    Console.WriteLine($"{item.Key} clothes:");
                     foreach (var element in item.Value)
                     {
                         Console.WriteLine($"* {element.Key} - {element.Value}");
