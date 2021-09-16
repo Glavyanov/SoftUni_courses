@@ -3,7 +3,7 @@ using System.Linq;
 using System.Text;
 using System.Collections.Generic;
 
-namespace _333TakeSkipRope
+namespace _03TakeSkipRope
 {
     class Program
     {

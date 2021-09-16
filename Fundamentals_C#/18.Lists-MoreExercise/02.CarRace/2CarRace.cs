@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 
-namespace _222CarRace
+namespace _02CarRace
 {
     class Program
     {
