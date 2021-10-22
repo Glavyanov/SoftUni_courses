@@ -39,7 +39,7 @@ namespace _02.Garden
                     }
 
                 }
-                for (int i = 0; i < dimension[0]; i++)                // Bloom col
+                for (int i = 0; i < dimension[0]; i++)  // Bloom col
                 {
                     if (garden[i][col] != 0)
                     {
