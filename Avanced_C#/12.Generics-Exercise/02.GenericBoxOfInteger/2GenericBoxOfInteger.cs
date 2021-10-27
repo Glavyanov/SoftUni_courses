@@ -14,6 +14,7 @@ namespace _02.GenericBoxOfInteger
                 int input = int.Parse(Console.ReadLine());
                 Box<int> box = new Box<int>(input);
                 boxs.Add(box);
+
             }
 
             foreach (var box in boxs)
