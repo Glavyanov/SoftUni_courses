@@ -30,7 +30,7 @@ namespace IteratorsAndComparators
         {
             private readonly List<Book> books;
 
-            private int currenIndex;
+            private int currentIndex;
 
             public LibraryIterator(IEnumerable<Book> books)
             {
@@ -38,7 +38,7 @@ namespace IteratorsAndComparators
                 this.books = books.ToList();
             }
 
-            public Book Current => this.books[this.currenIndex];
+            public Book Current => this.books[this.currentIndex];
 
             object IEnumerator.Current => this.Current;
 
@@ -49,12 +49,12 @@ namespace IteratorsAndComparators
 
             public bool MoveNext()
             {
-                return ++this.currenIndex < this.books.Count;
+                return ++this.currentIndex < this.books.Count;
             }
 
             public void Reset()
             {
-                this.currenIndex = -1;
+                this.currentIndex = -1;
             }
         }
     }
