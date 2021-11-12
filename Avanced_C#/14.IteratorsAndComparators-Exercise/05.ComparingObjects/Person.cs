@@ -26,7 +26,7 @@ namespace _05.ComparingObjects
 
         public int CompareTo(Person other)
         {
-            return this.Name.CompareTo(other.Name) != 0 ? this.Name.CompareTo(other.Name) : this.Year.CompareTo(other.Year) != 0 ? this.Year.CompareTo(other.Year) : this.Town.CompareTo(other.Town) != 0 ? this.Town.CompareTo(other.Town) : this.Town.CompareTo(other.Town); ;
+            return this.Name.CompareTo(other.Name) != 0 ? this.Name.CompareTo(other.Name) : this.Year.CompareTo(other.Year) != 0 ? this.Year.CompareTo(other.Year) : this.Town.CompareTo(other.Town) != 0 ? this.Town.CompareTo(other.Town) : this.Town.CompareTo(other.Town);
         }
     }
 }
