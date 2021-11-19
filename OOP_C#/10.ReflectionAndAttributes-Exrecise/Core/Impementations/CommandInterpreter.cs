@@ -22,18 +22,6 @@ namespace CommandPattern.Core.Impementations
                 throw new InvalidOperationException("Invalid command");
             }
             command = (ICommand)Activator.CreateInstance(type);
-            //if (commandName == nameof(HelloCommand))
-            //{
-            //    command = new HelloCommand();
-            //}
-            //else if (commandName == nameof(ExitCommand))
-            //{
-            //    command = new ExitCommand();
-            //}
-            //else
-            //{
-            //    throw new InvalidOperationException("Invalid command");
-            //}
             result = command.Execute(parameters);
             return result;
 
