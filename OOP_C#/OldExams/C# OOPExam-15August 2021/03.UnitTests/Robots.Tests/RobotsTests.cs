@@ -87,7 +87,7 @@
             Assert.AreEqual(0, robot.Battery);
         }
         [Test]
-        public void WorkMethodShouldThrows()
+        public void WorkMethodShouldThrowsExceptionWhenTryToWorkNonExistingRobot()
         {
             Robot robot = new Robot("Andro", 100);
             manager.Add(robot);
@@ -111,7 +111,7 @@
             Assert.AreEqual(100, robot.Battery);
         }
         [Test]
-        public void ChargeMethodShouldThroesException()
+        public void ChargeMethodShouldThrowsExceptionWhenTryToChargeNonExistingRobot()
         {
             Robot robot = new Robot("Andro", 100);
             Assert.Throws<InvalidOperationException>(() => manager.Charge("Andro"));
