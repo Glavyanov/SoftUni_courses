@@ -11,7 +11,7 @@ namespace _01.ReverseStrings
             Stack<char> stack = new Stack<char>(input);
             while (stack.Count != 0)
             {
-                Console.Write(stack.Pop());
+               Console.Write(stack.Pop());
             }
         }
     }
