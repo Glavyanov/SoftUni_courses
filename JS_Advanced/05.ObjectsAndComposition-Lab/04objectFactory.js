@@ -1,14 +1,21 @@
 function factory(library,orders){
-    return orders.map(compose);
-
-    function compose(order){
-        let result = Object.assign({},order.template);// тук използваме на готово имената на ключовете в order oт оrders!
-        for (const part of order.parts) {
-            result[part] = library[part];
-        }
-        return result;
+    let result = [];
+    for (const order of orders) {
+        let current = {};
+        Object.keys(order).forEach((key,i) =>{
+            if (i == 0) {
+                current = Object.assign({}, order[key]); 
+            }else{
+                order[key].map(x => {
+                    current[x] = library[x];
+                });
+            }
+        });
+        result.push(Object.assign({},current));
     }
-}// и получаваме кратко решение 100/100
+    
+    return result;
+}
 const library = {
     print: function () {
       console.log(`${this.name} is printing a page`);
