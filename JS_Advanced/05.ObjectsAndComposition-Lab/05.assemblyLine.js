@@ -4,9 +4,7 @@ function createAssemblyLine() {
 
             myCar['temp'] = 21;
             myCar['tempSettings'] = 21;
-            myCar['adjustTemp'] = () => {
-                myCar.temp < myCar.tempSettings ? myCar.temp++ : myCar.temp--;
-            }
+            myCar['adjustTemp'] = () => myCar.temp < myCar.tempSettings ? myCar.temp++ : myCar.temp--;
         },
         hasAudio(myCar) {
             myCar['currentTrack'] = null;
@@ -14,13 +12,11 @@ function createAssemblyLine() {
                 if (myCar.currentTrack !== null) {
                     console.log(`Now playing '${myCar.currentTrack.name}' by ${myCar.currentTrack.artist}`);
                 }
-            }
+            };
         },
         hasParktronic(myCar) {
-            myCar['checkDistance'] = (distance) => {
-                console.log(distance < 0.1 ? 'Beep! Beep! Beep!' : distance < 0.25 ? 'Beep! Beep!' :
-                    distance < 0.5 ? 'Beep!' : '');
-            }
+            myCar['checkDistance'] = distance => console.log(distance < 0.1 ? 'Beep! Beep! Beep!' :
+             distance < 0.25 ? 'Beep! Beep!' :distance < 0.5 ? 'Beep!' : '');
         },
     }
     return result;
