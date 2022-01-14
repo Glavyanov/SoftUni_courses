@@ -3,16 +3,9 @@ function solve(input) {
     for (const element of input) {
         let [town, product, price] = element.split(' | ');
         price = Number(price);
-        if (products.some(x => Object.keys(x)[0] === product)) {
-            products.map(x => {
-                if (Object.keys(x)[0] === product) {
-                    x[product][town] = price;
-                }
-            })
-        } else {
-            let obj = Object.assign({ [product]: Object.assign({ [town]: price, }), });
-            products.push(Object.assign({}, obj));
-        }
+        let wanted = products.find(x => Object.keys(x)[0] === product);
+        wanted ?  wanted[product][town] = price : products.push({ [product]: { [town]: price, }, });
+        
     }
 
     for (const product of products) {
