@@ -4,7 +4,7 @@ function solve(input){
     }
     let sum = sumRow(input[0]);
     if (checkElements(input)) {
-        input = input.map((row,i,arr) => arr.map(x => x[i]));
+        input = input.map((row,i,arr) => arr.map(x => x[i])); // transpose of a matrix over main diagonal.
         if (!checkElements(input)) {
             return false;
         }
