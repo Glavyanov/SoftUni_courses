@@ -1,9 +1,9 @@
 function solve(input){
     input.sort((a,b)=> a- b);
     let result = [];
-    while (input.length > 0) {
+    while (input.length) {
         result.push(input.shift());
-        if (input.length > 0) {
+        if (input.length) {
             result.push(input.pop());
         }
     }
