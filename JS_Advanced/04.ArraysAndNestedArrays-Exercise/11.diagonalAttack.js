@@ -1,7 +1,7 @@
 function solve(input) {
     let matrix = [];
     for (let i = 0; i < input.length; i++) {
-        let temparr = input[i].split(' ').map(x => Number(x));
+        let temparr = input[i].split(' ').map(Number);
         matrix[i] = temparr;
     }
     let sumLeftDiagonal = 0;
@@ -27,8 +27,7 @@ function solve(input) {
         }
         for (let i = 0; i < matrix.length; i++) {
             for (let j = matrix.length - 1; j >= 0; j--) {
-                clonedMatrix[i][j] = matrix[i][j];
-                i++;
+                clonedMatrix[i][j] = matrix[i++][j];
             }
         }
     }
