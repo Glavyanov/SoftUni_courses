@@ -18,11 +18,3 @@ function solve() {
   document.getElementById('result').innerHTML = result;
 
 }
-let list = {
-  collection: [],
-  add(){
-    collection.push(2);
-  }
-}
-list.add();
-console.log(list.collection.join(' '));
