@@ -4,5 +4,5 @@ function addItem() {
     let text = document.getElementById('newItemText').value;
     document.getElementById('newItemText').value = '';
     liElement.textContent = text;
-    text ? text.search(/^\s*$/) !== -1 ? ulElement.appendChild(liElement) : null : null;
+    text ? text.search(/^\s*$/) == -1 ? ulElement.appendChild(liElement) : null : null;
 }
