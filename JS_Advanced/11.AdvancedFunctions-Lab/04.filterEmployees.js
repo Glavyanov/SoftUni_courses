@@ -34,20 +34,3 @@ filterEmployees(`[{
   }]`,
     'last_name-Johnson'
 );
-
-// Object.values(store.find(x => x[model])).forEach(x =>{
-//   for (const key in x) {
-//       if (key !=='parent') {
-//           for (const xkey in x[key]) {
-//               printArr.push(`${xkey}:${x[key][xkey]}`);
-//           }
-//       }else{
-//           Object.values(x[key]).forEach(y => {
-//               for (const key in y) {
-//                   printArr.push(`${key}:${y[key]}`);
-//               }
-//           } )
-//       }
-      
-//   }
-// });
