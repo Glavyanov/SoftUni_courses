@@ -32,10 +32,10 @@ function cars(arr) {
                             for (const key in obj) {
                                 printArr.push(`${key}:${obj[key]}`);
                             }
-                        }else{
-                            let final = Object.values(x[1][key]);
-                            for (const key1 in final[0]) {
-                                printArr.push(`${key1}:${final[0][key1]}`);
+                        } else {
+                            let final = Object.values(x[1][key]).shift();
+                            for (const key in final) {
+                                printArr.push(`${key}:${final[key]}`);
                             }
                         }
                     }
@@ -55,5 +55,5 @@ function cars(arr) {
     });
 
 }
-cars(['create pesho','create gosho inherit pesho','create stamat inherit gosho','set pesho rank number1','set gosho nick goshko','print stamat']
+cars(['create pesho', 'create gosho inherit pesho', 'create stamat inherit gosho', 'set pesho rank number1', 'set gosho nick goshko', 'print stamat']
 ); // nick:goshko,rank:number1
