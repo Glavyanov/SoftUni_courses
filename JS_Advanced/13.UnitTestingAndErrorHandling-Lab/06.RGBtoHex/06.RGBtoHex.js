@@ -13,4 +13,5 @@ function rgbToHexColor(red, green, blue) {  //  87 / 100
         ("0" + green.toString(16).toUpperCase()).slice(-2) +
         ("0" + blue.toString(16).toUpperCase()).slice(-2);
 }
+
 module.exports = rgbToHexColor;
