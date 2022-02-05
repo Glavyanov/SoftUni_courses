@@ -6,7 +6,5 @@ function createCalculator() {
         get: function() { return value; }
     }
 }
-// const cal = createCalculator();
-// cal.add(5);
-// console.log(cal.get());
+
 module.exports = createCalculator;
