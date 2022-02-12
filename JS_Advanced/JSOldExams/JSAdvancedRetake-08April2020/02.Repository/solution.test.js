@@ -1,6 +1,6 @@
-let { Repository } = require("../solution.js");
+let { Repository } = require("./solution.js");
 const assert = require('chai').assert;
-          // 90 / 100 
+
 describe("Tests for Repository",  () => {
     describe("Constructor should work correct",  () =>{
         it('Should function',()=>{
@@ -184,11 +184,21 @@ describe("Tests for Repository",  () => {
             let repository = new Repository(properties);
             
             let entity = {
-                
                 age: 22,
                 birthday: new Date(1998, 0, 7)
             };
+            let entity1 = {
+                name: 'undefined',
+                birthday: new Date(1998, 0, 7)
+            };
+            let entity2 = {
+                name: 'undefined',
+                age: 22,
+                
+            };
             assert.throws(()=> repository.add(entity),Error,'Property name is missing from the entity!');
+            assert.throws(()=> repository.add(entity1),Error,'Property age is missing from the entity!');
+            assert.throws(()=> repository.add(entity2),Error,'Property birthday is missing from the entity!');
         });
         it('when adding entity with invalid type for name',() =>{
             let properties = {
@@ -441,7 +451,8 @@ describe("Tests for Repository",  () => {
             repository.add(entitys);
             repository.del(1);
             assert.equal(repository.count, 1);
-           
+            repository.del(0);
+            assert.equal(repository.count, 0);
         });
     });
     describe('Method del should throw error',()=>{
