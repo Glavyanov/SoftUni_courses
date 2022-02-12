@@ -3,6 +3,7 @@ class Bank {
     constructor(bankName) {
         this.#bankName = bankName;
         this.allCustomers = [];
+        
     }
     newCustomer(customer) {
         if (this.allCustomers.some(x => x.firstName == customer.firstName && x.lastName === customer.lastName)) {
