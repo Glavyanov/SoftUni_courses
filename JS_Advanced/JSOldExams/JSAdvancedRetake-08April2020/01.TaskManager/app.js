@@ -9,6 +9,7 @@ function solve() {
 
     addBtn.addEventListener('click', (e) => {
         e.preventDefault();
+        
         if (inputTaskEl.value && textDescriptionEl.value && dateEl.value &&
             inputTaskEl.value.search(/^\s*$/) == -1 && textDescriptionEl.value.search(/^\s*$/) == -1 &&
             dateEl.value.search(/^\s*$/) == -1) {
