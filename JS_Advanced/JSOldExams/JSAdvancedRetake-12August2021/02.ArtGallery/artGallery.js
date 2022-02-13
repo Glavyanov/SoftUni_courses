@@ -85,8 +85,3 @@ class ArtGallery {
         }
     }
 }
-
-
-
-
-
