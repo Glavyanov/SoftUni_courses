@@ -25,15 +25,15 @@ class ChristmasDinner {
         return `You have successfully bought ${type}!`;
     }
     recipes(recipe) {
-        let { recipeName, productsList } = recipe;
+        let { productsList } = recipe;
 
         for (const product of productsList) {
             if (!this.products.some(x => x === product)) {
                 throw new Error("We do not have this product");
             }
         }
-        this.dishes.push({ recipeName, productsList })
-        return `${recipeName} has been successfully cooked!`;
+        this.dishes.push(recipe);
+        return `${recipe.recipeName} has been successfully cooked!`;
     }
     inviteGuests(name, dish) {
         const dishAvailable = this.dishes.find(x => x.recipeName === dish);
