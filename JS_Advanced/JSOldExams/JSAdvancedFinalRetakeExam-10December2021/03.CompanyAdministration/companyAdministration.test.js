@@ -132,9 +132,9 @@
             it("Should throw error when passing not a integer number to second parameter", function () {
                 assert.throws(() => companyAdministration.firedEmployee(['Ivo', 'Emo', 'Anna'], 1.2), Error, "Invalid input");
                 assert.throws(() => companyAdministration.firedEmployee(['Ivo', 'Emo', 'Anna'], -2.22), Error, "Invalid input");
-                assert.throws(() => companyAdministration.firedEmployee(['Ivo', 'Emo', 'Anna'], -1), Error, "Invalid input");
+                assert.throws(() => companyAdministration.firedEmployee(['Ivo', 'Emo', 'Anna'], -0.999), Error, "Invalid input");
                 assert.throws(() => companyAdministration.firedEmployee(), Error, "Invalid input");
-
+                
             });
             it("Should throw error when passing not a number to second parameter", function () {
                 assert.throws(() => companyAdministration.firedEmployee(['Ivo', 'Emo', 'Anna'], true), Error, "Invalid input");
@@ -144,7 +144,7 @@
             });
             it("Should throw error when passing negative number to second parameter", function () {
                 assert.throws(() => companyAdministration.firedEmployee(['Ivo', 'Emo', 'Anna'], -22), Error, "Invalid input");
-                assert.throws(() => companyAdministration.firedEmployee(['Ivo', 'Emo', 'Anna'], -0.999), Error, "Invalid input");
+                assert.throws(() => companyAdministration.firedEmployee(['Ivo', 'Emo', 'Anna'], -1), Error, "Invalid input");
                 assert.throws(() => companyAdministration.firedEmployee(['Ivo', 'Emo', 'Anna'], -2), Error, "Invalid input");
                 assert.throws(() => companyAdministration.firedEmployee(), Error, "Invalid input");
 
