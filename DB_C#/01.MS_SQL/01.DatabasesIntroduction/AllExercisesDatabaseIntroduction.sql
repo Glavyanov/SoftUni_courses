@@ -44,7 +44,8 @@ CREATE TABLE [People](
 	CHECK (DATALENGTH([Picture])<=20000000),
 	[Height] DECIMAL(4,2),
 	[Weight] DECIMAL(5,2),
-	[Gender] CHAR NOT NULL,
+	[Gender] CHAR(1) NOT NULL,
+    CHECK ([Gender] = 'm' OR [Gender] = 'f'),
 	[Birthdate] DATETIME2 NOT NULL,
 	[Biography] NVARCHAR(MAX)
 );
@@ -89,3 +90,31 @@ ADD CONSTRAINT [PasswordLength] CHECK (LEN([Password])>4)
    ALTER TABLE [Users] 
 ADD CONSTRAINT [DF_LastLoginTime]
        DEFAULT CURRENT_TIMEZONE() FOR [LastLoginTime];
+
+--Problem 14.	Car Rental Database
+CREATE DATABASE [CarRental];
+
+USE [CarRental];
+
+CREATE TABLE [Categories](
+	 [Id] INT PRIMARY KEY IDENTITY
+    ,[CategoryName] VARCHAR(200) NOT NULL UNIQUE
+	,[DailyRate] DECIMAL(9,2)
+	,[WeeklyRate]DECIMAL(9,2)
+	,[MonthlyRate] DECIMAL(9,2)
+	,[WeekendRate]DECIMAL(9,2)
+);
+
+CREATE TABLE [Cars](
+	 [Id] INT PRIMARY KEY IDENTITY
+	,[PlateNumber] NVARCHAR(50)
+	,[Manufacturer] NVARCHAR(200) NOT NULL
+	,[Model] NVARCHAR(200) NOT NULL
+	,[CarYear] INT
+	,[CategotyId] INT FOREIGN KEY REFERENCES [Categories]([Id])
+	,[Doors] SMALLINT
+	,[Picture] VARBINARY(MAX)
+	,CHECK (DATALENGTH([Picture])<=20000000)
+	,[Condition] VARCHAR(200)
+	,[Available] BIT
+);
