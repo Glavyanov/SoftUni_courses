@@ -83,4 +83,9 @@ ADD CONSTRAINT [PK_UsersComposite_IdAndUsername] PRIMARY KEY ([Id],[Username])
 
 --Problem 10.	Add Check Constraint
 ALTER TABLE [Users]
-ADD CONSTRAINT [PasswordLength] CHECK (LEN([Password])>4) 
+ADD CONSTRAINT [PasswordLength] CHECK (LEN([Password])>4)
+
+--Problem 11.	Set Default Value of a Field
+   ALTER TABLE [Users] 
+ADD CONSTRAINT [DF_LastLoginTime]
+       DEFAULT CURRENT_TIMEZONE() FOR [LastLoginTime];
