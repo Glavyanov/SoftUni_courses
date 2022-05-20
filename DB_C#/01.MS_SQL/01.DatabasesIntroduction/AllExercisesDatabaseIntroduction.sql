@@ -111,10 +111,100 @@ CREATE TABLE [Cars](
 	,[Manufacturer] NVARCHAR(200) NOT NULL
 	,[Model] NVARCHAR(200) NOT NULL
 	,[CarYear] INT
-	,[CategotyId] INT FOREIGN KEY REFERENCES [Categories]([Id])
+	,[CategoryId] INT FOREIGN KEY REFERENCES [Categories]([Id])
 	,[Doors] SMALLINT
 	,[Picture] VARBINARY(MAX)
 	,CHECK (DATALENGTH([Picture])<=20000000)
 	,[Condition] VARCHAR(200)
 	,[Available] BIT
 );
+
+CREATE TABLE [Employees](
+	 [Id] INT PRIMARY KEY IDENTITY
+	,[FirstName] VARCHAR(50) NOT NULL
+	,[LastName] VARCHAR(50) NOT NULL
+	,[Title] VARCHAR(50)
+	,[Notes] VARCHAR(255)
+);
+
+CREATE TABLE [Customers](
+	 [Id] INT PRIMARY KEY IDENTITY
+	,[DriverLicenceNumber] INT NOT NULL
+	,[FullName] VARCHAR(255) NOT NULL
+	,[Address] VARCHAR(255) NOT NULL
+	,[City] VARCHAR(50) NOT NULL
+	,[ZIPCode] INT NOT NULL
+	,[Notes] VARCHAR(255)
+);
+
+CREATE TABLE [RentalOrders](
+	 [Id] INT PRIMARY KEY IDENTITY
+	,[EmployeeId] INT FOREIGN KEY REFERENCES [Employees]([Id])
+	,[CustomerId] INT FOREIGN KEY REFERENCES [Customers]([Id])
+	,[CarId] INT FOREIGN KEY REFERENCES [Cars]([Id])
+	,[TankLevel] INT 
+	,[KilometrageStart] INT NOT NULL
+	,[KilometrageEnd] INT NOT NULL
+	,[TotalKilometrage] INT NOT NULL
+	,[StartDate] DATE NOT NULL
+	,[EndDate] DATE NOT NULL
+	,[TotalDays] INT NOT NULL
+	,[RateApplied] DECIMAL (9,2) NOT NULL
+	,[TaxRate] DECIMAL (9,2) NOT NULL
+	,[OrderStatus] VARCHAR(50) NOT NULL
+	,[Notes] VARCHAR(255)
+);
+
+INSERT INTO [Categories]([CategoryName],[DailyRate],[WeeklyRate],[MonthlyRate],[WeekendRate])
+	VALUES
+		('A',10.00,68.80,277.55,35.00),
+		('B',20.00,108.80,477.55,65.00),
+		('B1',25.00,138.80,577.55,95.00),
+		('C',40.00,322.80,1200.55,120.00),
+		('D1',40.00,322.80,1200.55,120.00)
+
+INSERT INTO [Cars]([PlateNumber],[Manufacturer],[Model],[CarYear],[CategoryId],[Doors],[Picture],[Condition],[Available])
+	VALUES
+		('A 2323 AB','MAN','350',2010,5,3,NULL,'GOOD',1),
+		('B 1818 CB','VW','Caddy',2020,3,5,NULL,'GOOD',1),
+		('C 1313 KX','KIA','Optima',2018,2,4,NULL,'GOOD',1),
+		('CA 2121 KM','DAF','400',2017,4,2,NULL,'GOOD',1),
+		('E 3312 MH','BMW','320',2021,2,5,NULL,'GOOD',1) 
+
+INSERT INTO [Employees]([FirstName],[LastName],[Title], [Notes])
+	VALUES
+		('John1','Doe1','driver','N/A'),
+		('John2','Doe2','driver','N/A'),
+		('John3','Doe3','driver','N/A'),
+		('John4','Doe4','driver','N/A'),
+		('John5','Doe5','manager','N/A')
+
+INSERT INTO [Customers]([DriverLicenceNumber],[FullName],[Address],[City],[ZIPCode],[Notes])
+	VALUES (28252,'Jane1 Doe1','Sofia','Sofia',1303,NULL),
+	       (28253,'Jane2 Doe2','Sofia','Sofia',1303,NULL),
+	       (28254,'Jane3 Doe3','Sofia','Sofia',1303,NULL),
+	       (28255,'Jane4 Doe4','Sofia','Sofia',1303,NULL),
+	       (28256,'Jane5 Doe5','Sofia','Sofia',1303,NULL)
+
+INSERT INTO [RentalOrders](
+           [EmployeeId]
+		   ,[CustomerId]
+		   ,[CarId]
+		   ,[TankLevel]
+		   ,[KilometrageStart]
+		   ,[KilometrageEnd]
+		   ,[TotalKilometrage]
+		   ,[StartDate]
+		   ,[EndDate]
+		   ,[TotalDays]
+		   ,[RateApplied]
+		   ,[TaxRate]
+		   ,[OrderStatus]
+		   ,[Notes]
+)
+	VALUES 
+		(1,1,1,NULL,100,200,100,'1998-01-01','1998-01-03',3,2.33,253.42,'Received',NULL),
+		(2,2,2,NULL,100,200,100,'1998-01-01','1998-01-03',3,2.33,453.42,'In Progress',NULL),
+		(3,3,3,NULL,100,200,100,'1998-01-01','1998-01-03',3,2.33,553.42,'Not Started',NULL),
+		(4,4,4,NULL,100,200,100,'1998-01-01','1998-01-03',3,2.33,253.42,'Received',NULL),
+		(5,5,5,NULL,100,200,100,'1998-01-01','1998-01-03',3,2.33,353.42,'Received',NULL)
