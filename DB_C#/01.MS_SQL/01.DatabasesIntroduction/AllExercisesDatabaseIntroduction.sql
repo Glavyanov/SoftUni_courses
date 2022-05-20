@@ -91,6 +91,77 @@ ADD CONSTRAINT [PasswordLength] CHECK (LEN([Password])>4)
 ADD CONSTRAINT [DF_LastLoginTime]
        DEFAULT CURRENT_TIMEZONE() FOR [LastLoginTime];
 
+--Problem 12.	Set Unique Field
+ALTER TABLE [Users]
+DROP CONSTRAINT [PK_UsersComposite_IdAndUsername];
+
+ALTER TABLE [USers]
+ADD CONSTRAINT [PK_UsersId] PRIMARY KEY ([Id]);
+
+ALTER TABLE [Users]
+ADD CONSTRAINT [UN_UniqueUsername] UNIQUE ([Username]);
+
+ALTER TABLE [Users]
+ADD CONSTRAINT [UsernameLength] CHECK (LEN([Username])>2);
+
+--Problem 13.	Movies Database
+CREATE TABLE [Directors](
+	[Id] INT PRIMARY KEY IDENTITY NOT NULL,
+	[DirectorName] VARCHAR(200) NOT NULL,
+	[Notes] VARCHAR(500)
+)
+CREATE TABLE [Genres] (
+	[Id] INT PRIMARY KEY IDENTITY NOT NULL,
+	[GenreName] VARCHAR(200) NOT NULL,
+	[Notes] VARCHAR(500)
+)
+
+CREATE TABLE [Categories] (
+	[Id] INT PRIMARY KEY IDENTITY NOT NULL,
+	[CategoryName] VARCHAR(200) NOT NULL,
+	[Notes] VARCHAR(500)
+)
+
+CREATE TABLE [Movies](
+	[Id] INT PRIMARY KEY IDENTITY NOT NULL,
+	[Title] VARCHAR(200) UNIQUE NOT NULL,
+	[DirectorId] INT FOREIGN KEY REFERENCES [Directors]([Id]),
+	[CopyrightYear] INT NOT NULL,
+	[Length] TIME NOT NULL,
+	[GenreId] INT FOREIGN KEY REFERENCES [Genres]([Id]),
+	[CategoryId] INT FOREIGN KEY REFERENCES [Categories]([Id]),
+	[Rating] INT,
+	[Notes] VARCHAR(500)
+)
+
+INSERT INTO [Directors]
+	VALUES ('Director1','Foo1'),
+	       ('Director2','Foo2'),
+	       ('Director3','Foo3'),
+	       ('Director4','Foo4'),
+	       ('Director5','Foo5')
+
+INSERT INTO [Genres]
+	VALUES ('Genre1','Foo1'),
+	       ('Genre2','Foo2'),
+	       ('Genre3','Foo3'),
+	       ('Genre4','Foo4'),
+	       ('Genre5','Foo5')
+
+INSERT INTO [Categories]
+	VALUES ('Category1','Foo1'),
+	       ('Category2','Foo2'),
+	       ('Category3','Foo3'),
+	       ('Category4','Foo4'),
+	       ('Category5','Foo5')
+
+INSERT INTO [Movies]
+	VALUES ('Movie5',5,1990,'01:59:59',5,5,4,'Foo5'),
+	       ('Movie1',1,1991,'01:59:50',1,1,9,'Foo1'),
+		   ('Movie3',3,1995,'01:59:30',3,3,8,'Foo3'),
+		   ('Movie2',2,1996,'01:59:20',2,2,6,'Foo2'),
+		   ('Movie4',4,1997,'01:59:40',4,4,9,'Foo4')
+
 --Problem 14.	Car Rental Database
 CREATE DATABASE [CarRental];
 
