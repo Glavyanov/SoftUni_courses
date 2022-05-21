@@ -20,15 +20,17 @@ ALTER TABLE [Minions]
 ADD [TownId] INT FOREIGN KEY REFERENCES [Towns](Id);
 
 --Problem 4.	Insert Records in Both Tables
-INSERT INTO [Towns]([Id], [Name]) VALUES 
-(1,'Sofia'),
-(2,'Plovdiv'),
-(3,'Varna')
+INSERT INTO [Towns]([Id], [Name]) 
+	VALUES 
+        (1,'Sofia'),
+        (2,'Plovdiv'),
+        (3,'Varna')
 
-INSERT INTO [Minions]([Id], [Name], [Age], [TownId]) VALUES 
-(1,'Kevin',22,1),
-(2,'Bob',15,3),
-(3,'Steward',NULL,2)
+INSERT INTO [Minions]([Id], [Name], [Age], [TownId]) 
+	VALUES 
+        (1,'Kevin',22,1),
+        (2,'Bob',15,3),
+        (3,'Steward',NULL,2)
 
 --Problem 5.	Truncate Table Minions
 TRUNCATE TABLE [Minions];
@@ -50,12 +52,13 @@ CREATE TABLE [People](
 	[Biography] NVARCHAR(MAX)
 );
 
-INSERT INTO [People]([Name],[Picture],[Height],[Weight],[Gender],[Birthdate],[Biography]) VALUES
-(N'Александър',CAST('0xBDC5C000000000000000000000000000' As varbinary(MAX)),1.8,8.3,'m','02.02.1990',N'Някаква биография'),
-(N'Александра',CAST('0xBDC5C000000000000000000000000000' As varbinary(MAX)),1.8,80.3,'f','01.01.1984',N'Някаква биография'),
-(N'Борис',CAST('0xBDC5C000000000000000000000000000' As varbinary(MAX)),1.8,80.3,'m','01.01.1983',N'Някаква биография'),
-(N'Борислава',CAST('0xBDC5C000000000000000000000000000' As varbinary(MAX)),1.8,80.3,'f','01.01.1982',N'Някаква биография'),
-(N'Георги',CAST('0xBDC5C000000000000000000000000000' As varbinary(MAX)),1.8,80.3,'m','01.01.1981',N'Някаква биография')
+INSERT INTO [People]([Name],[Picture],[Height],[Weight],[Gender],[Birthdate],[Biography]) 
+	VALUES
+        (N'Александър',CAST('0xBDC5C000000000000000000000000000' As varbinary(MAX)),1.8,8.3,'m','02.02.1990',N'Някаква биография'),
+        (N'Александра',CAST('0xBDC5C000000000000000000000000000' As varbinary(MAX)),1.8,80.3,'f','01.01.1984',N'Някаква биография'),
+        (N'Борис',CAST('0xBDC5C000000000000000000000000000' As varbinary(MAX)),1.8,80.3,'m','01.01.1983',N'Някаква биография'),
+        (N'Борислава',CAST('0xBDC5C000000000000000000000000000' As varbinary(MAX)),1.8,80.3,'f','01.01.1982',N'Някаква биография'),
+        (N'Георги',CAST('0xBDC5C000000000000000000000000000' As varbinary(MAX)),1.8,80.3,'m','01.01.1981',N'Някаква биография')
 
 --Problem 8.	Create Table Users
 CREATE TABLE [Users](
@@ -63,17 +66,18 @@ CREATE TABLE [Users](
 	[Username] VARCHAR(30) NOT NULL,
 	[Password] VARCHAR(26) NOT NULL,
 	[ProfilePicture] VARBINARY(MAX),
-	CHECK (DATALENGTH([ProfilePicture])<=900000),
+    CHECK (DATALENGTH([ProfilePicture])<=900000),
 	[LastLoginTime] DATETIME2,
 	[IsDeleted] BIT
 );
 
-INSERT INTO [Users]([Username],[Password],[ProfilePicture],[LastLoginTime],[IsDeleted]) VALUES 
-('User1','1',NULL,'01.01.2009',0),
-('User2','2',NULL,'01.01.2019',0),
-('User3','3',NULL,'01.01.2015',1),
-('User4','4',NULL,'01.01.2008',0),
-('User5','5',NULL,'01.01.2021',1)
+INSERT INTO [Users]([Username],[Password],[ProfilePicture],[LastLoginTime],[IsDeleted]) 
+	VALUES 
+        ('User1','1',NULL,'01.01.2009',0),
+        ('User2','2',NULL,'01.01.2019',0),
+        ('User3','3',NULL,'01.01.2015',1),
+        ('User4','4',NULL,'01.01.2008',0),
+        ('User5','5',NULL,'01.01.2021',1)
 
 --Problem 9.	Change Primary Key
 ALTER TABLE [Users]
@@ -135,32 +139,36 @@ CREATE TABLE [Movies](
 )
 
 INSERT INTO [Directors]
-	VALUES ('Director1','Foo1'),
-	       ('Director2','Foo2'),
-	       ('Director3','Foo3'),
-	       ('Director4','Foo4'),
-	       ('Director5','Foo5')
+	VALUES 
+	    ('Director1','Foo1'),
+	    ('Director2','Foo2'),
+	    ('Director3','Foo3'),
+	    ('Director4','Foo4'),
+	    ('Director5','Foo5')
 
 INSERT INTO [Genres]
-	VALUES ('Genre1','Foo1'),
-	       ('Genre2','Foo2'),
-	       ('Genre3','Foo3'),
-	       ('Genre4','Foo4'),
-	       ('Genre5','Foo5')
+	VALUES 
+	    ('Genre1','Foo1'),
+	    ('Genre2','Foo2'),
+	    ('Genre3','Foo3'),
+	    ('Genre4','Foo4'),
+	    ('Genre5','Foo5')
 
 INSERT INTO [Categories]
-	VALUES ('Category1','Foo1'),
-	       ('Category2','Foo2'),
-	       ('Category3','Foo3'),
-	       ('Category4','Foo4'),
-	       ('Category5','Foo5')
+	VALUES 
+	   ('Category1','Foo1'),
+	   ('Category2','Foo2'),
+	   ('Category3','Foo3'),
+	   ('Category4','Foo4'),
+	   ('Category5','Foo5')
 
 INSERT INTO [Movies]
-	VALUES ('Movie5',5,1990,'01:59:59',5,5,4,'Foo5'),
-	       ('Movie1',1,1991,'01:59:50',1,1,9,'Foo1'),
-		   ('Movie3',3,1995,'01:59:30',3,3,8,'Foo3'),
-		   ('Movie2',2,1996,'01:59:20',2,2,6,'Foo2'),
-		   ('Movie4',4,1997,'01:59:40',4,4,9,'Foo4')
+	VALUES 
+	    ('Movie5',5,1990,'01:59:59',5,5,4,'Foo5'),
+	    ('Movie1',1,1991,'01:59:50',1,1,9,'Foo1'),
+		('Movie3',3,1995,'01:59:30',3,3,8,'Foo3'),
+		('Movie2',2,1996,'01:59:20',2,2,6,'Foo2'),
+		('Movie4',4,1997,'01:59:40',4,4,9,'Foo4')
 
 --Problem 14.	Car Rental Database
 CREATE DATABASE [CarRental];
@@ -251,14 +259,15 @@ INSERT INTO [Employees]([FirstName],[LastName],[Title], [Notes])
 		('John5','Doe5','manager','N/A')
 
 INSERT INTO [Customers]([DriverLicenceNumber],[FullName],[Address],[City],[ZIPCode],[Notes])
-	VALUES (28252,'Jane1 Doe1','Sofia','Sofia',1303,NULL),
-	       (28253,'Jane2 Doe2','Sofia','Sofia',1303,NULL),
-	       (28254,'Jane3 Doe3','Sofia','Sofia',1303,NULL),
-	       (28255,'Jane4 Doe4','Sofia','Sofia',1303,NULL),
-	       (28256,'Jane5 Doe5','Sofia','Sofia',1303,NULL)
+	VALUES 
+	    (28252,'Jane1 Doe1','Sofia','Sofia',1303,NULL),
+	    (28253,'Jane2 Doe2','Sofia','Sofia',1303,NULL),
+	    (28254,'Jane3 Doe3','Sofia','Sofia',1303,NULL),
+	    (28255,'Jane4 Doe4','Sofia','Sofia',1303,NULL),
+	    (28256,'Jane5 Doe5','Sofia','Sofia',1303,NULL)
 
 INSERT INTO [RentalOrders](
-           [EmployeeId]
+            [EmployeeId]
 		   ,[CustomerId]
 		   ,[CarId]
 		   ,[TankLevel]
@@ -279,3 +288,10 @@ INSERT INTO [RentalOrders](
 		(3,3,3,NULL,100,200,100,'1998-01-01','1998-01-03',3,2.33,553.42,'Not Started',NULL),
 		(4,4,4,NULL,100,200,100,'1998-01-01','1998-01-03',3,2.33,253.42,'Received',NULL),
 		(5,5,5,NULL,100,200,100,'1998-01-01','1998-01-03',3,2.33,353.42,'Received',NULL)
+
+
+
+--Problem 19.	Basic Select All Fields
+SELECT * FROM [Towns]
+SELECT * FROM [Departments]
+SELECT * FROM [Employees]
