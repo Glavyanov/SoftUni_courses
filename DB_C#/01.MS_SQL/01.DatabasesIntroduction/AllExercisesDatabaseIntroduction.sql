@@ -289,7 +289,138 @@ INSERT INTO [RentalOrders](
 		(4,4,4,NULL,100,200,100,'1998-01-01','1998-01-03',3,2.33,253.42,'Received',NULL),
 		(5,5,5,NULL,100,200,100,'1998-01-01','1998-01-03',3,2.33,353.42,'Received',NULL)
 
+--Problem 15.	Hotel Database
+CREATE DATABASE [Hotel]
+GO
+USE [Hotel]
+GO
 
+CREATE TABLE [Employees](
+	[Id] INT PRIMARY KEY IDENTITY,
+	[FirstName] NVARCHAR(50) NOT NULL,
+	[LastName] NVARCHAR(50) NOT NULL,
+	[Title] VARCHAR(50) NOT NULL,
+	[Notes] NVARCHAR(200)
+)
+
+CREATE TABLE [Customers](
+	[AccountNumber]  VARCHAR(50) PRIMARY KEY,
+	[FirstName] NVARCHAR(50) NOT NULL,
+	[LastName] NVARCHAR(50) NOT NULL,
+	[PhoneNumber] VARCHAR(50),
+	[EmergencyName] VARCHAR(50) NOT NULL,
+	[EmergencyNumber] VARCHAR(50) NOT NULL,
+	[Notes] VARCHAR(200)
+)
+
+CREATE TABLE [RoomStatus](
+	[RoomStatus] VARCHAR(50) PRIMARY KEY,
+	[Notes] VARCHAR(200)
+)
+
+CREATE TABLE [RoomTypes](
+	[RoomType] VARCHAR(50) PRIMARY KEY,
+	[Notes] VARCHAR(200)
+)
+
+CREATE TABLE [BedTypes](
+	[BedType] VARCHAR(50) PRIMARY KEY,
+	[Notes] VARCHAR(200)
+)
+
+CREATE TABLE [Rooms](
+	[RoomNumber] SMALLINT PRIMARY KEY,
+	[RoomType] VARCHAR(50) FOREIGN KEY REFERENCES [RoomTypes]([RoomType])NOT NULL,
+	[BedType] VARCHAR(50) FOREIGN KEY REFERENCES [BedTypes]([BedType])NOT NULL,
+	[Rate] TINYINT,
+	[RoomStatus] VARCHAR(50) FOREIGN KEY REFERENCES [RoomStatus]([RoomStatus]) NOT NULL,
+	[Notes] VARCHAR(200)
+)
+
+CREATE TABLE [Payments](
+	[Id] INT PRIMARY KEY IDENTITY,
+	[EmployeeId] INT FOREIGN KEY REFERENCES [Employees]([Id]) NOT NULL,
+	[PaymentDate] DATETIME2 NOT NULL,
+	[AccountNumber] VARCHAR(50) FOREIGN KEY REFERENCES [Customers]([AccountNumber]) NOT NULL,
+	[FirstDateOccupied] DATE NOT NULL,
+	[LastDateOccupied] DATE NOT NULL,
+	[TotalDays] SMALLINT NOT NULL,
+	[AmountCharged] DECIMAL(9,2) NOT NULL,
+	[TaxRate] DECIMAL(8,2) NOT NULL,
+	[TaxAmount] DECIMAL(9,2) NOT NULL,
+	[PaymentTotal] DECIMAL(9,2) NOT NULL,
+	[Notes] VARCHAR(200)
+)
+
+CREATE TABLE [Occupancies](
+	[Id] INT PRIMARY KEY IDENTITY,
+	[EmployeeId] INT FOREIGN KEY REFERENCES [Employees]([Id]) NOT NULL,
+	[DateOccupied] DATE NOT NULL,
+	[AccountNumber] VARCHAR(50) FOREIGN KEY REFERENCES [Customers]([AccountNumber]) NOT NULL,
+	[RoomNumber] SMALLINT FOREIGN KEY REFERENCES [Rooms]([RoomNumber]) NOT NULL,
+	[RateApplied] TINYINT,
+	[PhoneCharge] DECIMAL(9,2) NOT NULL,
+	[Notes] VARCHAR(200)
+)
+
+INSERT INTO [Employees]([FirstName],[LastName],[Title])
+	VALUES
+		('Jane1','Doe1','manager'),
+		('Jane2','Doe2','maid'),
+		('Jane3','Doe3','reception')
+
+INSERT INTO [Customers]([AccountNumber],[FirstName],[LastName],[EmergencyName],[EmergencyNumber])
+	VALUES
+		('UBS00337895611','John1','Doe1','First','00001'),
+		('UBS00337895612','John2','Doe2','First','00002'),
+		('UBS00337895613','John3','Doe3','First','00003')
+
+INSERT INTO [RoomStatus]([RoomStatus])
+	VALUES
+		('Occupied'),
+		('Available'),
+		('Reserved')
+
+INSERT INTO [RoomTypes]([RoomType])
+	VALUES
+		('Luxe'),
+		('Apartment'),
+		('Studio')
+
+INSERT INTO [BedTypes]([BedType])
+	VALUES
+		('TwinXl'),
+		('Twin'),
+		('King')
+
+INSERT INTO [Rooms]([RoomNumber],[RoomType],[BedType],[Rate],[RoomStatus])
+	VALUES
+		(1,'Luxe','King',1,'Available'),
+		(2,'Studio','Twin',1,'Available'),
+		(3,'Apartment','TwinXl',1,'Available')
+
+INSERT INTO [Payments](
+				[EmployeeId]
+			   ,[PaymentDate]
+			   ,[AccountNumber]
+			   ,[FirstDateOccupied]
+			   ,[LastDateOccupied]
+			   ,[TotalDays]
+			   ,[AmountCharged]
+			   ,[TaxRate]
+			   ,[TaxAmount]
+			   ,[PaymentTotal]
+					   )
+	VALUES
+		(1,'2010-12-01','UBS00337895611','2011-01-01','2011-01-10',10,10000.01,200.12,3,10200.13),
+		(1,'2010-12-01','UBS00337895612','2011-01-11','2011-01-21',10,10000.01,200.12,3,10200.13),
+		(1,'2010-12-01','UBS00337895613','2011-01-22','2011-01-30',8,10000.01,200.12,3,10200.13)
+
+INSERT INTO [Occupancies]([EmployeeId],[DateOccupied],[AccountNumber],[RoomNumber],[RateApplied],[PhoneCharge])
+	VALUES
+		(1,'2011-01-01','UBS00337895611',3,1,0.00),
+		(1,'2011-01-11','UBS00337895612',1,1,0.00),
+		(1,'2011-01-22','UBS00337895613',2,1,0.00)
 
 --Problem 19.	Basic Select All Fields
 SELECT * FROM [Towns]
