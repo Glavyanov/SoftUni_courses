@@ -15,7 +15,7 @@ CREATE TABLE [Towns](
 	 [Name] NVARCHAR(50) NOT NULL,
 );
 
---Problem 3.	Alter Minions Table
+--Problem 3.	Alter Minions Table 
 ALTER TABLE [Minions] 
 ADD [TownId] INT FOREIGN KEY REFERENCES [Towns](Id);
 
