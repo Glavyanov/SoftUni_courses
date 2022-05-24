@@ -155,7 +155,7 @@ ORDER BY [PeakName]
    WHERE [ContinentCode] IN ('EU')
 ORDER BY [Population] DESC, [CountryName]
 
---24    Countries and Currency (Euro / Not Euro)
+--24.    Countries and Currency (Euro / Not Euro)
  SELECT  [CountryName]
 		,[CountryCode]
 		,CASE
@@ -164,3 +164,8 @@ ORDER BY [Population] DESC, [CountryName]
 		 END AS [Currency]
 	FROM [Countries]
 ORDER BY [CountryName]
+
+--25.    All Diablo Characters
+  SELECT [Name]
+    FROM [Characters]
+ORDER BY [Name]
