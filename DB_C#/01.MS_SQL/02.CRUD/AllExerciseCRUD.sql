@@ -97,6 +97,14 @@ CREATE VIEW [V_EmployeeNameJobTitle] AS
            ,[JobTitle] AS [Job Title]
        FROM [Employees]
 
+--17.1.	Create View Employees with Job Titles
+CREATE OR ALTER VIEW [V_EmployeeNameJobTitle] 
+         AS 
+     SELECT CONCAT([FirstName], ' ', [MiddleName] + ' ', [LastName])
+         AS [Full Name], 
+            [JobTitle]
+       FROM [Employees]
+
 SELECT * FROM [V_EmployeeNameJobTitle]
 
 --18.	 Distinct Job Titles
@@ -115,7 +123,7 @@ SELECT * FROM [Projects]
 --19.0.	Find First 10 Started Projects
 SELECT 
  TOP(10) *
-       , FORMAT([StartDate],'dd-MM-yyyy') AS [StartDateFormatted] -- MM задължително с UPPER CASE
+       , FORMAT([StartDate],'dd-MM-yyyy') AS [StartDateFormatted] -- MM mandatory with UPPER CASE
     FROM [Projects]
 ORDER BY [StartDate], [Name]
 
