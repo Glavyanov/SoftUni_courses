@@ -455,3 +455,20 @@ ORDER BY[Name]
 	   ,[Salary]
    FROM [Employees]
 ORDER BY[Salary] DESC
+
+--Problem 22.	Increase Employees Salary
+UPDATE [Employees]
+   SET [Salary] *= 1.10
+
+SELECT [Salary]
+  FROM [Employees]
+
+--Problem 23.	Decrease Tax Rate
+UPDATE [Payments]
+   SET [TaxRate] *= 0.97
+
+SELECT [TaxRate]
+  FROM [Payments]
+
+--Problem 24.	Delete All Records
+TRUNCATE TABLE [Occupancies]
