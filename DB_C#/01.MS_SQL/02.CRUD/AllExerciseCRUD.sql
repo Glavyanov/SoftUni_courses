@@ -169,3 +169,11 @@ ORDER BY [CountryName]
   SELECT [Name]
     FROM [Characters]
 ORDER BY [Name]
+
+--26. Extra W3Schools
+  SELECT [FirstName], [MiddleName], [LastName]
+    FROM [Employees]
+ORDER BY ( CASE
+	     WHEN [MiddleName] IS NULL THEN [FirstName]
+	     ELSE [MiddleName]
+	     END) DESC;
