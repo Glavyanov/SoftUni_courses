@@ -70,8 +70,8 @@ CREATE TABLE [Exams](
 )
 
 CREATE TABLE [StudentsExams](
-	[StudentID] INT FOREIGN	KEY REFERENCES [Students]([StudentID]) NOT NULL,
-	[ExamID] INT FOREIGN KEY REFERENCES [Exams]([ExamID]) NOT NULL,
+	[StudentID] INT FOREIGN	KEY REFERENCES [Students]([StudentID]),
+	[ExamID] INT FOREIGN KEY REFERENCES [Exams]([ExamID]),
 	PRIMARY KEY ([StudentID], [ExamID])
 )
 
@@ -127,12 +127,12 @@ CREATE TABLE [Customers](
 	[CustomerID] INT PRIMARY KEY IDENTITY,
 	[Name] VARCHAR(50) NOT NULL,
 	[Birthday] DATE,
-	[CityID] INT FOREIGN KEY REFERENCES [Cities]([CityID])
+	[CityID] INT FOREIGN KEY REFERENCES [Cities]([CityID]) NOT NULL
 )
 
 CREATE TABLE [Orders](
 	[OrderID] INT PRIMARY KEY IDENTITY,
-	[CustomerID] INT FOREIGN KEY REFERENCES [Customers]([CustomerID])
+	[CustomerID] INT FOREIGN KEY REFERENCES [Customers]([CustomerID]) NOT NULL
 )
 
 CREATE TABLE [ItemTypes](
@@ -143,7 +143,7 @@ CREATE TABLE [ItemTypes](
 CREATE TABLE [Items](
 	[ItemID] INT PRIMARY KEY IDENTITY,
 	[Name] VARCHAR(50) NOT NULL,
-	[ItemTypeID] INT FOREIGN KEY REFERENCES [ItemTypes]([ItemTypeID])
+	[ItemTypeID] INT FOREIGN KEY REFERENCES [ItemTypes]([ItemTypeID]) NOT NULL
 )
 
 CREATE TABLE [OrderItems](
@@ -167,14 +167,14 @@ CREATE TABLE [Students](
 	[StudentID] INT PRIMARY KEY IDENTITY,
 	[StudentNumber] INT NOT NULL UNIQUE,
 	[StudentName] VARCHAR(50) NOT NULL,
-	[MajorID] INT FOREIGN KEY REFERENCES [Majors]([MajorID])
+	[MajorID] INT FOREIGN KEY REFERENCES [Majors]([MajorID]) NOT NULL
 )
 
 CREATE TABLE [Payments](
 	[PaymentID] INT PRIMARY KEY IDENTITY,
 	[PaymentDate] DATETIME2 NOT NULL,
 	[PaymentAmount] DECIMAL(9,2) NOT NULL,
-	[StudentID] INT FOREIGN KEY REFERENCES [Students]([StudentID])
+	[StudentID] INT FOREIGN KEY REFERENCES [Students]([StudentID]) NOT NULL
 )
 
 CREATE TABLE [Subjects](
