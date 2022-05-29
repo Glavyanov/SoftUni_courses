@@ -51,3 +51,50 @@ SELECT [FirstName]
 	  ,[LastName]
   FROM [Employees]
  WHERE [JobTitle] NOT LIKE '%engineer%'
+
+--Problem 5.	Find Towns with Name Length
+  SELECT [Name]
+    FROM [Towns]
+   WHERE LEN([Name]) IN (5,6)
+ORDER BY [Name]
+
+--Problem 5.0.
+  SELECT [Name]
+    FROM [Towns]
+   WHERE LEN([Name]) BETWEEN 5 AND 6
+ORDER BY [Name]
+
+--Problem 6.	Find Towns Starting With
+  SELECT [TownID]
+        ,[Name]
+    FROM [Towns]
+   WHERE [Name] LIKE '[mkbe]%'
+ORDER BY [Name]
+
+--Problem 6.0.
+  SELECT [TownID]
+        ,[Name]
+    FROM [Towns]
+   WHERE LEFT([Name],1) IN ('m','k','b','e')
+ORDER BY [Name]
+
+--Problem 7.	 Find Towns Not Starting With
+  SELECT [TownID]
+        ,[Name]
+    FROM [Towns]
+   WHERE [Name] NOT LIKE '[rbd]%'
+ORDER BY [Name]
+
+--Problem 7.0.
+  SELECT [TownID]
+        ,[Name]
+    FROM [Towns]
+   WHERE LEFT([Name],1) NOT IN ('r','d','b')
+ORDER BY [Name]
+
+--Problem 7.1.
+  SELECT [TownID]
+        ,[Name]
+    FROM [Towns]
+   WHERE [Name] LIKE '[^rdb]%'
+ORDER BY [Name]
