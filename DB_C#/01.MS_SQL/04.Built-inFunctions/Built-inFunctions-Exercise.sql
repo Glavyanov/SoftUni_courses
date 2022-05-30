@@ -106,7 +106,7 @@ CREATE OR ALTER VIEW [V_EmployeesHiredAfter2000] AS
 	 SELECT [FirstName]
 		   ,[LastName]
 	   FROM [Employees]
-	  WHERE YEAR([HireDate]) > 2000
+      WHERE YEAR([HireDate]) > 2000
 
 --Problem 9.	Length of Last Name
 SELECT [FirstName]
@@ -143,8 +143,8 @@ ORDER BY [Salary] DESC
 --Part II – Queries for Geography Database 
 
 --Problem 12.	Countries Holding ‘A’ 3 or More Times
-SELECT [CountryName]
-	  ,[IsoCode] AS [ISO Code]
-FROM [Countries]
-WHERE [CountryName] LIKE '%a%a%a%'
-ORDER BY[IsoCode]
+  SELECT [CountryName]
+  	    ,[IsoCode] AS [ISO Code]
+    FROM [Countries]
+   WHERE [CountryName] LIKE '%a%a%a%'
+ ORDER BY[IsoCode]
