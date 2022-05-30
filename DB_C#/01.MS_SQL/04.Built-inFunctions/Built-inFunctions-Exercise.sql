@@ -148,3 +148,19 @@ ORDER BY [Salary] DESC
     FROM [Countries]
    WHERE [CountryName] LIKE '%a%a%a%'
  ORDER BY[IsoCode]
+
+--Problem 12.0.	Countries Holding ‘A’ 3 or More Times
+ SELECT [CountryName]
+       ,[IsoCode] AS [ISO Code]
+   FROM [Countries]
+  WHERE LEN([CountryName]) - LEN(REPLACE([CountryName], 'a','')) > 2
+ORDER BY[IsoCode]
+
+ --Problem 13.	Mix of Peak and River Names
+  SELECT [PeakName]
+        ,[RiverName]
+        ,LOWER(CONCAT(SUBSTRING([PeakName],1,LEN([PeakName])-1),[RiverName])) AS [Mix]
+    FROM [Rivers]
+        ,[Peaks]
+   WHERE UPPER(RIGHT([PeakName],1)) = UPPER(LEFT([RiverName],1))
+ORDER BY [Mix]
