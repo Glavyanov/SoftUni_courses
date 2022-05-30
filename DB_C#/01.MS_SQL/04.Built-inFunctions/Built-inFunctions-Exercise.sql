@@ -103,10 +103,10 @@ ORDER BY [Name]
 
 --Problem 8.	Create View Employees Hired After 2000 Year
 CREATE OR ALTER VIEW [V_EmployeesHiredAfter2000] AS 
-	 SELECT [FirstName]
-           ,[LastName]
-	   FROM [Employees]
-      WHERE YEAR([HireDate]) > 2000
+      SELECT [FirstName]
+            ,[LastName]
+        FROM [Employees]
+       WHERE YEAR([HireDate]) > 2000
 
 --Problem 9.	Length of Last Name
 SELECT [FirstName]
