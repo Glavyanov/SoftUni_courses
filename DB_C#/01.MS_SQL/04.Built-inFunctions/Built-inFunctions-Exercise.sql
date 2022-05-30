@@ -104,7 +104,7 @@ ORDER BY [Name]
 --Problem 8.	Create View Employees Hired After 2000 Year
 CREATE OR ALTER VIEW [V_EmployeesHiredAfter2000] AS 
 	 SELECT [FirstName]
-		   ,[LastName]
+           ,[LastName]
 	   FROM [Employees]
       WHERE YEAR([HireDate]) > 2000
 
@@ -116,10 +116,10 @@ SELECT [FirstName]
 
  --Problem 10.	Rank Employees by Salary
   SELECT [EmployeeID]
-	    ,[FirstName]
-	    ,[LastName]
+        ,[FirstName]
+        ,[LastName]
         ,[Salary]
-		,DENSE_RANK() OVER (PARTITION BY[Salary] ORDER BY [EmployeeID]) AS [Rank]
+        ,DENSE_RANK() OVER (PARTITION BY[Salary] ORDER BY [EmployeeID]) AS [Rank]
     FROM [Employees]
    WHERE [Salary] BETWEEN 10000 AND 50000
 ORDER BY [Salary] DESC
