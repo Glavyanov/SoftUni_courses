@@ -164,3 +164,60 @@ ORDER BY[IsoCode]
         ,[Peaks]
    WHERE UPPER(RIGHT([PeakName],1)) = UPPER(LEFT([RiverName],1))
 ORDER BY [Mix]
+
+--Part III – Queries for Diablo Database
+
+--Problem 14.	Games from 2011 and 2012 year
+  SELECT TOP 50
+         [Name]
+        ,CONVERT(VARCHAR(10), g.[Start],121) AS [Start]
+    FROM [Games] AS g
+   WHERE YEAR(g.[Start]) IN (2011,2012)
+ORDER BY [Start],g.[Name]
+
+--Problem 14.0.	Games from 2011 and 2012 year
+  SELECT TOP 50
+       g.[Name]
+        ,FORMAT(g.[Start],'yyyy-MM-dd') AS [Start]
+    FROM [Games] AS g
+   WHERE YEAR(g.[Start]) IN (2011,2012)
+ORDER BY [Start],g.[Name]
+
+--Problem 14.1.	Games from 2011 and 2012 year
+  SELECT TOP 50
+         g.[Name]
+        ,CAST(g.[Start] AS DATE) AS [Start]
+    FROM [Games] AS g
+   WHERE YEAR(g.[Start]) IN (2011,2012)
+ORDER BY [Start],g.[Name]
+
+--Problem 15.	User Email Providers
+  SELECT [Username]
+        ,REPLACE([Email],SUBSTRING([Email],1,CHARINDEX('@',[Email],1)),'') AS [Email Provider]
+    FROM [Users]
+ORDER BY [Email Provider],[Username]
+
+--Problem 16.	Get Users with IPAdress Like Pattern
+  SELECT [Username]
+        ,[IpAddress]
+    FROM [Users]
+   WHERE [IpAddress] LIKE '___.1%.%.___'
+ORDER BY [Username]
+
+--Problem 17.	Show All Games with Duration and Part of the Day
+  SELECT [Name] AS [Game]
+        ,CASE 
+            WHEN DATEPART(HOUR,[Start]) < 12 THEN 'Morning'
+            WHEN DATEPART(HOUR,[Start]) < 18 THEN 'Afternoon'
+            WHEN DATEPART(HOUR,[Start]) < 24 THEN 'Evening'
+         END 
+      AS [Part of the Day]
+        ,CASE 
+            WHEN [Duration] < 4 THEN 'Extra Short'
+            WHEN [Duration] < 7 THEN 'Short'
+            WHEN [Duration] > 6 THEN 'Long'
+            ELSE 'Extra Long'
+         END
+      AS [Duration]
+    FROM [Games]
+ORDER BY [Game],[Duration],[Part of the Day]
