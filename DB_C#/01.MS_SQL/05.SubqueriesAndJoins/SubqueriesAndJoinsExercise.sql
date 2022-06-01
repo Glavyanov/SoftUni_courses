@@ -1,7 +1,7 @@
 --Part I – Queries for SoftUni Database
 
 --Problem 1.	Employee Address
-SELECT TOP 5
+  SELECT TOP 5
          e.[EmployeeID] AS [EmployeeId] 
         ,e.[JobTitle]
         ,e.[AddressID] AS [AddressId]
