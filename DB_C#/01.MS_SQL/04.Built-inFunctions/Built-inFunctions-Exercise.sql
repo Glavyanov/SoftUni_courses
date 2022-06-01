@@ -169,7 +169,7 @@ ORDER BY [Mix]
 
 --Problem 14.	Games from 2011 and 2012 year
   SELECT TOP 50
-         [Name]
+         g.[Name]
         ,CONVERT(VARCHAR(10), g.[Start],121) AS [Start]
     FROM [Games] AS g
    WHERE YEAR(g.[Start]) IN (2011,2012)
@@ -177,7 +177,7 @@ ORDER BY [Start],g.[Name]
 
 --Problem 14.0.	Games from 2011 and 2012 year
   SELECT TOP 50
-       g.[Name]
+         g.[Name]
         ,FORMAT(g.[Start],'yyyy-MM-dd') AS [Start]
     FROM [Games] AS g
    WHERE YEAR(g.[Start]) IN (2011,2012)
@@ -205,7 +205,8 @@ ORDER BY [Email Provider],[Username]
 ORDER BY [Username]
 
 --Problem 17.	Show All Games with Duration and Part of the Day
-  SELECT [Name] AS [Game]
+  SELECT [Name]
+      AS [Game]
         ,CASE 
             WHEN DATEPART(HOUR,[Start]) < 12 THEN 'Morning'
             WHEN DATEPART(HOUR,[Start]) < 18 THEN 'Afternoon'
