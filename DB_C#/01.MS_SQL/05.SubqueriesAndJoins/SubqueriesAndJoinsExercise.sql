@@ -85,8 +85,8 @@ SELECT TOP 5
        e.[EmployeeID]
       ,e.[FirstName]
       ,CASE
-		   WHEN YEAR(p.[StartDate]) < 2005 THEN p.[Name]
-		   ELSE NULL
+           WHEN YEAR(p.[StartDate]) < 2005 THEN p.[Name]
+           ELSE NULL
        END AS [ProjectName]
   FROM [Employees] AS e
   JOIN [EmployeesProjects] AS ep ON e.[EmployeeID] = ep.[EmployeeID]
