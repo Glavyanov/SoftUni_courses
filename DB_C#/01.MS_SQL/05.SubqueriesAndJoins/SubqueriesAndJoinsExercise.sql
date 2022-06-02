@@ -112,3 +112,13 @@ ORDER BY e.[EmployeeID]
     JOIN [Employees] AS m ON e.[ManagerID] = m.[EmployeeID]
     JOIN [Departments] AS d ON e.[DepartmentID] = d.DepartmentID
 ORDER BY e.[EmployeeID]
+
+--Problem 11. Min Average Salary
+SELECT 
+  MIN(avQ.[av]) AS [MinAverageSalary]
+FROM (
+       SELECT AVG([Salary]) AS av
+         FROM [Employees]
+     GROUP BY [DepartmentID]
+     ) 
+  AS [avQ]
