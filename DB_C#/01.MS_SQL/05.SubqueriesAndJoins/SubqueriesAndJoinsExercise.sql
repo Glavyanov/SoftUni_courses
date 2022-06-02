@@ -91,3 +91,13 @@ SELECT TOP 5
   FROM [Employees] AS e
   JOIN [EmployeesProjects] AS ep ON e.[EmployeeID] = ep.[EmployeeID]
   JOIN [Projects] AS p ON ep.[ProjectID] = p.[ProjectID] AND e.[EmployeeID] = 24
+
+--Problem 9.	Employee Manager
+  SELECT e.[EmployeeID] 
+        ,e.[FirstName]
+        ,e.[ManagerID]
+        ,m.[FirstName] AS [ManagerName]
+    FROM [Employees] AS e
+    JOIN [Employees] AS m ON e.[ManagerID] = m.[EmployeeID]
+   WHERE e.[ManagerID] IN (3,7)
+ORDER BY e.[EmployeeID]
