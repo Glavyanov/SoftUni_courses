@@ -136,3 +136,11 @@ FROM (
     JOIN [Peaks] AS p ON m.Id = p.MountainId
 WHERE c.[CountryCode] = 'BG' AND p.[Elevation] > 2835
 ORDER BY p.[Elevation] DESC
+
+---Problem 13. Count Mountain Ranges
+  SELECT mc.[CountryCode]
+        ,COUNT(m.[MountainRange]) AS [MountainRange]
+    FROM [Mountains] AS m
+    JOIN [MountainsCountries] AS mc ON m.[Id] = mc.[MountainId]
+   WHERE mc.[CountryCode] IN ('US','BG','RU')
+GROUP BY mc.[CountryCode]
