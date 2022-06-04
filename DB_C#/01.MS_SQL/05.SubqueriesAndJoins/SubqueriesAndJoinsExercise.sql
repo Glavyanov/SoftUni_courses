@@ -144,3 +144,41 @@ ORDER BY p.[Elevation] DESC
     JOIN [MountainsCountries] AS mc ON m.[Id] = mc.[MountainId]
    WHERE mc.[CountryCode] IN ('US','BG','RU')
 GROUP BY mc.[CountryCode]
+
+--Problem 14. Countries with Rivers
+   SELECT TOP 5
+          c.[CountryName]
+         ,r.[RiverName]
+     FROM [Countries] AS c
+LEFT JOIN [CountriesRivers] AS cr ON cr.[CountryCode] = c.[CountryCode]
+LEFT JOIN [Rivers] AS r ON cr.[RiverId] = r.[Id]
+    WHERE c.[ContinentCode] = 'AF'
+ ORDER BY c.[CountryName]
+
+--Problem 15. Continents and Currencies
+  SELECT [MaxCurrency].[ContinentCode]
+        ,[MaxCurrency].[CurrencyCode]
+        ,[MaxCurrency].[CurrencyUsage] 
+    FROM (
+			SELECT * 
+				  ,DENSE_RANK() OVER (PARTITION BY [ContinentCode] ORDER BY [CurrencyUsage] DESC) AS [CurrRanking]
+              FROM (
+                         SELECT c.[ContinentCode],
+                                ctr.[CurrencyCode],
+                                COUNT(ctr.[CurrencyCode]) AS [CurrencyUsage]
+                           FROM [Continents] AS c
+                      LEFT JOIN [Countries] AS ctr ON c.[ContinentCode] = ctr.[ContinentCode]
+                       GROUP BY c.[ContinentCode], ctr.[CurrencyCode] 
+                   ) 
+                AS [CurrencyGreaterThenOne]
+             WHERE [CurrencyUsage] > 1
+		 ) 
+      AS [MaxCurrency]
+   WHERE [CurrRanking] = 1
+ORDER BY [MaxCurrency].[ContinentCode]
+
+--Problem 16. Countries Without Any Mountains
+   SELECT COUNT(*) AS [Count]
+     FROM [Countries] AS c
+LEFT JOIN [MountainsCountries] AS mc ON c.[CountryCode] = mc.[CountryCode]
+    WHERE mc.[MountainId] IS NULL
