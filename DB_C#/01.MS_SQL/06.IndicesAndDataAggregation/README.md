@@ -1,6 +1,6 @@
 # Indices and Data Aggregation
 - Indices
-- Gruouping
+- Grouping
 - Aggregate Functions
 - Having Clause
 - Pivot Tables
