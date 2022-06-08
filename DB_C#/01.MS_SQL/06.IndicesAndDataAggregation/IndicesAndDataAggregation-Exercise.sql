@@ -25,3 +25,10 @@ ORDER BY AVG([MagicWandSize])
        , SUM([DepositAmount]) AS [TotalSum]
     FROM [WizzardDeposits]
 GROUP BY [DepositGroup]
+
+--Problem 6. Deposits Sum for Ollivander Family
+  SELECT [DepositGroup] 
+       , SUM([DepositAmount]) AS [TotalSum]
+    FROM [WizzardDeposits]
+   WHERE [MagicWandCreator] LIKE 'Ollivander%'
+GROUP BY [DepositGroup]
