@@ -1,3 +1,7 @@
+                                     /*********************************************
+                                      ** Part I – Queries for Gringotts Database **
+                                      *********************************************/
+
 --Part I – Queries for Gringotts Database
 
 --Problem 1. Records’ Count
@@ -67,3 +71,43 @@ SELECT [AgeGroup]
               FROM [WizzardDeposits] 
             ) AS [FilterAge]
 GROUP BY [AgeGroup]
+
+--Problem 10. First Letter
+ SELECT [FirstLetter]
+   FROM (
+         SELECT LEFT([FirstName],1) AS [FirstLetter]
+           FROM [WizzardDeposits] 
+          WHERE [DepositGroup] = 'Troll Chest' 
+        ) AS [Uniqueness]
+GROUP BY [FirstLetter]
+ORDER BY [FirstLetter]
+
+--Problem 11. Average Interest
+  SELECT [DepositGroup]
+       , [IsDepositExpired]
+       , AVG([DepositInterest]) AS [AverageInterest]
+    FROM [WizzardDeposits]
+   WHERE [DepositStartDate] > '1985-01-01'
+GROUP BY [DepositGroup],[IsDepositExpired]
+ORDER BY [DepositGroup] DESC, [IsDepositExpired]
+
+--Problem 12. Rich Wizard, Poor Wizard
+SELECT SUM([Diff]) AS [SumDifference]
+  FROM (
+		 SELECT [DepositAmount]  - LEAD([DepositAmount]) OVER (ORDER BY [Id]) AS [Diff]
+		   FROM [WizzardDeposits]
+	   ) AS [InnerDiff]
+
+                                            /********************************************
+                                             ** Part II – Queries for SoftUni Database **
+                                             ********************************************/
+GO
+ 
+USE [SoftUni]
+ 
+GO
+--Problem 13. Departments Total Salaries
+  SELECT [DepartmentID]
+	   , SUM([Salary]) AS [TotalSalary]
+    FROM [Employees]
+GROUP BY [DepartmentID]
