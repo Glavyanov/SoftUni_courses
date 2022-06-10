@@ -94,9 +94,9 @@ ORDER BY [DepositGroup] DESC, [IsDepositExpired]
 --Problem 12. Rich Wizard, Poor Wizard
 SELECT SUM([Diff]) AS [SumDifference]
   FROM (
-		 SELECT [DepositAmount]  - LEAD([DepositAmount]) OVER (ORDER BY [Id]) AS [Diff]
-		   FROM [WizzardDeposits]
-	   ) AS [InnerDiff]
+         SELECT [DepositAmount]  - LEAD([DepositAmount]) OVER (ORDER BY [Id]) AS [Diff]
+           FROM [WizzardDeposits]
+       ) AS [InnerDiff]
 
                                             /********************************************
                                              ** Part II – Queries for SoftUni Database **
@@ -108,6 +108,6 @@ USE [SoftUni]
 GO
 --Problem 13. Departments Total Salaries
   SELECT [DepartmentID]
-	   , SUM([Salary]) AS [TotalSalary]
+       , SUM([Salary]) AS [TotalSalary]
     FROM [Employees]
 GROUP BY [DepartmentID]
