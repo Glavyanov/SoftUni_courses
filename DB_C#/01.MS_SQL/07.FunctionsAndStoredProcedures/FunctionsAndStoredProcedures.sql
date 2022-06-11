@@ -74,7 +74,7 @@ BEGIN
 		CASE    
 			WHEN  @salary < 30000  THEN 'Low'
 			WHEN  @salary > 50000  THEN 'High'  
-		    ELSE 'Average'  
+            ELSE 'Average'  
 		END;
 END
 /*CREATE FUNCTION [ufn_GetSalaryLevel](@salary DECIMAL(18,4))
