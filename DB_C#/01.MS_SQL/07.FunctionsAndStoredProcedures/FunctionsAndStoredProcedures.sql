@@ -70,12 +70,12 @@ CREATE FUNCTION [ufn_GetSalaryLevel](@salary DECIMAL(18,4))
 RETURNS VARCHAR(8)
 AS
 BEGIN 
-	RETURN  
-		CASE    
-			WHEN  @salary < 30000  THEN 'Low'
-			WHEN  @salary > 50000  THEN 'High'  
+    RETURN  
+        CASE    
+            WHEN  @salary < 30000  THEN 'Low'
+            WHEN  @salary > 50000  THEN 'High'  
             ELSE 'Average'  
-		END;
+        END;
 END
 /*CREATE FUNCTION [ufn_GetSalaryLevel](@salary DECIMAL(18,4))
 RETURNS VARCHAR(8)
