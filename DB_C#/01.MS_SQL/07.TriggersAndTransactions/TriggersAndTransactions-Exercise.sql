@@ -1,6 +1,6 @@
                                /*******************************************
-								** Part I – Queries for SoftUni Database **
-								*******************************************/
+                                ** Part I – Queries for SoftUni Database **
+                                *******************************************/
 --Problem 1.	Employees with Salary Above 35000
 CREATE PROC [usp_GetEmployeesSalaryAbove35000]
 AS
