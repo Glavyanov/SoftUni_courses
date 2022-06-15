@@ -153,3 +153,48 @@ SELECT [dbo].[ufn_IsWordComprised]('bobr','Rob') AS [Result]
 SELECT [dbo].[ufn_IsWordComprised]('pppp','Guy') AS [Result]
 
 GO
+
+--Problem 8.	Define Function
+CREATE PROC [usp_DeleteEmployeesFromDepartment](@departmentId INT)
+AS
+BEGIN 
+	
+	--Set NULL to ManagerId for Employees whose ManagerID is equal on EmployeeID to delete
+    UPDATE [Employees]
+    SET [ManagerID] = NULL  
+    WHERE [ManagerID] IN ( SELECT [EmployeeID] 
+                             FROM [Employees] 
+                            WHERE [DepartmentID] = @departmentId
+                         )
+ --ALTER COLUMN [ManagerID] to nullable on Departments table and set to NULL [v]
+     ALTER TABLE [Departments]
+    ALTER COLUMN [ManagerID] INT
+	
+    UPDATE [Departments]
+       SET [ManagerID] = NULL  
+     WHERE [ManagerID] IN ( SELECT [EmployeeID] 
+                              FROM [Employees] 
+                             WHERE [DepartmentID] = @departmentId
+                          )
+--Delete from EmployeeProjects
+DELETE FROM [EmployeesProjects]
+      WHERE [EmployeeID] IN (
+                                SELECT [EmployeeID]
+                                  FROM [Employees]
+                                 WHERE [DepartmentID] = @departmentId
+                            )
+--Delete from Employees
+DELETE FROM [Employees]
+      WHERE [DepartmentID] = @departmentId
+--Delete from Departments
+DELETE FROM [Departments]
+      WHERE [DepartmentID] = @departmentId
+
+    SELECT COUNT(*) 
+     FROM [Employees] 
+    WHERE [DepartmentID] = @departmentId
+END
+
+GO
+
+/*EXEC [dbo].[usp_DeleteEmployeesFromDepartment] */
