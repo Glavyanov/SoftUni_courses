@@ -122,3 +122,34 @@ GO
 EXEC [dbo].[usp_EmployeesBySalaryLevel] 'High'
 
 GO
+
+--Problem 7.	Define Function
+CREATE FUNCTION [ufn_IsWordComprised](@setOfLetters VARCHAR(100), @word VARCHAR(100))
+RETURNS BIT
+AS
+BEGIN
+    DECLARE @currentSymbol VARCHAR
+    DECLARE @index INT = 1
+    DECLARE @result BIT = 1
+
+    WHILE(@index <= LEN(@word))
+    BEGIN
+        SET @currentSymbol = SUBSTRING(@word,@index,1);
+        IF(CHARINDEX(@currentSymbol,@setOfLetters) < 1)
+        BEGIN
+            SET @result = 0;
+            BREAK;
+        END
+        SET @index +=1;
+    END
+    RETURN @result
+END
+
+GO
+
+SELECT [dbo].[ufn_IsWordComprised]('oistmiahf','Sofia') AS [Result]
+SELECT [dbo].[ufn_IsWordComprised]('oistmiahf','halves') AS [Result]
+SELECT [dbo].[ufn_IsWordComprised]('bobr','Rob') AS [Result]
+SELECT [dbo].[ufn_IsWordComprised]('pppp','Guy') AS [Result]
+
+GO
