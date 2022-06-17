@@ -198,3 +198,24 @@ END
 GO
 
 /*EXEC [dbo].[usp_DeleteEmployeesFromDepartment] */
+
+                                                /*****************************************
+                                                 ** Part II – Queries for Bank Database **
+                                                 *****************************************/
+USE [Bank]
+
+GO
+
+--Problem 9.	Find Full Name
+CREATE PROC [usp_GetHoldersFullName]
+AS
+BEGIN
+    SELECT CONCAT([FirstName],' ',[LastName]) AS [Full Name]
+    FROM [AccountHolders]
+END
+
+GO
+
+EXEC [dbo].[usp_GetHoldersFullName]
+
+GO
