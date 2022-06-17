@@ -219,3 +219,29 @@ GO
 EXEC [dbo].[usp_GetHoldersFullName]
 
 GO
+
+--Problem 10.	People with Balance Higher Than
+CREATE PROC [usp_GetHoldersWithBalanceHigherThan] @greaterThan DECIMAL(18,4)
+AS
+BEGIN
+SELECT [FirstName] AS [First Name]
+     , [LastName] AS [Last Name]
+  FROM [AccountHolders]
+ WHERE [Id] IN (SELECT [ID] 
+                 FROM (
+                              SELECT ac.[Id] AS [ID]
+                                   , SUM([Balance]) AS [SumBalance]
+                                FROM [AccountHolders] AS ac
+                                JOIN [Accounts] AS a ON ac.[Id] = a.[AccountHolderId]
+							GROUP BY ac.[Id]
+                      ) AS [GroupByID]
+                WHERE [SumBalance] > @greaterThan 
+                )
+ORDER BY [First Name],[Last Name]
+END
+
+GO
+
+EXEC [dbo].[usp_GetHoldersWithBalanceHigherThan] 6000000
+
+GO
