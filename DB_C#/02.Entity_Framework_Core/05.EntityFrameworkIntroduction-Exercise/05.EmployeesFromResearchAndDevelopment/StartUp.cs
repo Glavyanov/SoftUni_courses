@@ -13,7 +13,7 @@ namespace SoftUni
         public static void Main(string[] args)
         {
             SoftUniContext softUniContext = new SoftUniContext();
-            Console.WriteLine(GetDepartmentsWithMoreThan5Employees(softUniContext)); 
+            Console.WriteLine(GetEmployeesFromResearchAndDevelopment(softUniContext)); 
         }
 
         public static string GetEmployeesFromResearchAndDevelopment(SoftUniContext context)
