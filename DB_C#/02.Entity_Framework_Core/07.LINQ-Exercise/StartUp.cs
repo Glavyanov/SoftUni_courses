@@ -17,6 +17,9 @@
             //Task 2.	All Albums Produced by Given Producer
             Console.WriteLine(ExportAlbumsInfo(context, 9));
 
+            //Task 3.	Songs Above Given Duration
+            Console.WriteLine(ExportSongsAboveDuration(context, 4));
+
         }
 
         public static string ExportAlbumsInfo(MusicHubDbContext context, int producerId)
@@ -65,7 +68,40 @@
 
         public static string ExportSongsAboveDuration(MusicHubDbContext context, int duration)
         {
-            throw new NotImplementedException();
+            var songs = context.Songs
+                .Include(sp => sp.SongPerformers)
+                .ThenInclude(sp => sp.Performer)
+                .Include(s => s.Writer)
+                .Include(s => s.Album)
+                .ThenInclude(s => s.Producer)
+                .ToArray()
+                .Where(s => s.Duration.TotalSeconds > duration)
+                .Select(s => new
+                {
+                    s.Name,
+                    PerformerFullName = s.SongPerformers.Select(sp => $"{sp.Performer.FirstName} {sp.Performer.LastName}").FirstOrDefault(),
+                    WriterName = s.Writer.Name,
+                    AlbumProducer = s.Album.Producer.Name,
+                    Duration = s.Duration
+                })
+                .OrderBy(s => s.Name)
+                .ThenBy(s => s.WriterName)
+                .ThenBy(s => s.PerformerFullName)
+                .ToArray();
+
+            var sb = new StringBuilder();
+            int count = 1;
+            foreach (var s in songs)
+            {
+                sb.AppendLine($"-Song #{count++}");
+                sb.AppendLine($"---SongName: {s.Name}");
+                sb.AppendLine($"---Writer: {s.WriterName}");
+                sb.AppendLine($"---Performer: {s.PerformerFullName}");
+                sb.AppendLine($"---AlbumProducer: {s.AlbumProducer}");
+                sb.AppendLine($"---Duration: {s.Duration:c}");
+            }
+
+            return sb.ToString().TrimEnd();
         }
     }
 }
