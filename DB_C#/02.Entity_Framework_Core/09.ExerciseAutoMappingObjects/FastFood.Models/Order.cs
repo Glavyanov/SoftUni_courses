@@ -9,6 +9,10 @@ namespace FastFood.Models
 
     public class Order
 	{
+        public Order()
+        {
+			this.OrderItems = new HashSet<OrderItem>();
+        }
 		public int Id { get; set; }
 
 		[Required]

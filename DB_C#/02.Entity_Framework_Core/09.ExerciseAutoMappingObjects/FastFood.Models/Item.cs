@@ -5,6 +5,10 @@ namespace FastFood.Models
 
     public class Item
 	{
+        public Item()
+        {
+			this.OrderItems = new HashSet<OrderItem>();
+        }
 		public int Id { get; set; }
 
 		[StringLength(30, MinimumLength = 3)]
