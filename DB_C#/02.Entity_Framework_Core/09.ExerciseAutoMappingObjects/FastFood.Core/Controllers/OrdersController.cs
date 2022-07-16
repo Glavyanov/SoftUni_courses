@@ -8,6 +8,7 @@
     using FastFood.Core.ViewModels.Employees;
     using FastFood.Core.ViewModels.Items;
     using FastFood.Models;
+    using FastFood.Models.Enums;
     using Microsoft.AspNetCore.Mvc;
     using ViewModels.Orders;
 
@@ -46,6 +47,8 @@
             }
 
             var order = this.mapper.Map<Order>(model);
+            OrderType orderType = Enum.Parse<OrderType>(model.OrderType);
+            order.Type = orderType;
             order.OrderItems.Add(new OrderItem { ItemId = model.ItemId, Quantity = model.Quantity });
 
             this.context.Orders.Add(order);
