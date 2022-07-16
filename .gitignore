@@ -3,3 +3,5 @@ bin
 obj
 
 Config.cs
+
+appsettings.json
