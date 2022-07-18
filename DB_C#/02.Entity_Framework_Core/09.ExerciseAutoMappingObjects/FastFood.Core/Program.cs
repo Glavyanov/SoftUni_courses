@@ -14,7 +14,6 @@ namespace FastFood.Core
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
-            //stoyan-shopov-entity-framework-core-february-2021/3221
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
