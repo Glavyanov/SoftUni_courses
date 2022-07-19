@@ -1,17 +1,23 @@
 ﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProductShop.DTOs.ImportDTOs
 {
     [JsonObject]
-    public class ImportUserDto
+    public class ImportProductDto
     {
-        [JsonProperty("firstName")]
-        public string FirstName { get; set; }
+        [JsonProperty("Name")]
+        [Required]
+        [MinLength(3)]
+        public string Name { get; set; }
 
-        [JsonProperty("lastName")]
-        public string LastName { get; set; }
+        [JsonProperty("Price")]
+        public decimal Price { get; set; }
 
-        [JsonProperty("age")]
-        public int? Age { get; set; }
+        [JsonProperty("SellerId")]
+        public int SellerId { get; set; }
+
+        [JsonProperty("BuyerId")]
+        public int? BuyerId { get; set; }
     }
 }
