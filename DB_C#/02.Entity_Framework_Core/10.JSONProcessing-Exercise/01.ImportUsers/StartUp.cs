@@ -30,7 +30,9 @@ namespace ProductShop
 
         public static string ImportUsers(ProductShopContext context, string inputJson)
         {
-            ImportUserDto[] usersImportDto = JsonConvert.DeserializeObject<ImportUserDto[]>(inputJson);
+            ImportUserDto[] usersImportDto = JsonConvert.DeserializeObject<ImportUserDto[]>(inputJson)
+                                                        .Where(IsValid)
+                                                        .ToArray();
             User[] users = Mapper.Map<User[]>(usersImportDto);
             
             context.Users.AddRange(users);
@@ -42,6 +44,15 @@ namespace ProductShop
         private static void InitializeFilePath(string file)
         {
             filePath = Path.Combine(Directory.GetCurrentDirectory(), "../../../Datasets",file);
+        }
+
+        private static bool IsValid(object obj)
+        {
+            var validationContext = new System.ComponentModel.DataAnnotations.ValidationContext(obj);
+            var validationResult = new List<ValidationResult>();
+
+            bool isValid = Validator.TryValidateObject(obj, validationContext, validationResult, true);
+            return isValid;
         }
     }
 }
