@@ -13,6 +13,7 @@ namespace ProductShop
     public class StartUp
     {
         private static string filePath;
+
         public static void Main(string[] args)
         {
             Mapper.Initialize(cfg => cfg.AddProfile(typeof(ProductShopProfile)));
@@ -26,6 +27,7 @@ namespace ProductShop
             Console.WriteLine(ImportUsers(context, inputJson));
 
         }
+
         public static string ImportUsers(ProductShopContext context, string inputJson)
         {
             ImportUserDto[] usersImportDto = JsonConvert.DeserializeObject<ImportUserDto[]>(inputJson);
