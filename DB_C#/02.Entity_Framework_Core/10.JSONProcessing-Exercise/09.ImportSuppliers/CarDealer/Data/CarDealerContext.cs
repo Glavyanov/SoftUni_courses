@@ -12,7 +12,7 @@ namespace CarDealer.Data
         {
         }
 
-        protected CarDealerContext()
+        public CarDealerContext()
         {
         }
 
@@ -27,7 +27,7 @@ namespace CarDealer.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=.;Database=CarDealer;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer(Config.ConfiguratonString);
             }
         }
 
