@@ -19,7 +19,6 @@ namespace ProductShop
 
         public static void Main(string[] args)
         {
-            Mapper.Initialize(cfg => cfg.AddProfile(typeof(ProductShopProfile)));
             ProductShopContext context = new ProductShopContext();
 
             ResultsFilePath("users-and-products.json");
