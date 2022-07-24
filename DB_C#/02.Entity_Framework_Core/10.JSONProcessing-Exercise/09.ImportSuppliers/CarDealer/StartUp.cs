@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using AutoMapper;
 using CarDealer.Data;
+using CarDealer.DTO.Suppliers;
 using CarDealer.Models;
 using Newtonsoft.Json;
 
@@ -12,27 +13,37 @@ namespace CarDealer
     public class StartUp
     {
         private static string filePath;
+
         public static void Main(string[] args)
         {
             CarDealerContext context = new CarDealerContext();
+            Mapper.Initialize(cfg => cfg.AddProfile(typeof(CarDealerProfile)));
 
-            context.Database.EnsureDeleted();
-            context.Database.EnsureCreated();
+            /*context.Database.EnsureDeleted();
+            context.Database.EnsureCreated();*/
 
-            /*ResultsFilePath("suppliers.json");
-            string json = File.ReadAllText(filePath);*/
-            
+            DatasetsFilePath("suppliers.json");
+            string json = File.ReadAllText(filePath);
+            Console.WriteLine(ImportSuppliers(context, json));
 
         }
 
         public static string ImportSuppliers(CarDealerContext context, string inputJson)
         {
-            throw new NotImplementedException();
+            ImportSupplierDto[] suppliersDtos = JsonConvert.DeserializeObject<ImportSupplierDto[]>(inputJson)
+                                                       .ToArray();
+
+            var suppliers = Mapper.Map<Supplier[]>(suppliersDtos);
+
+            context.Suppliers.AddRange(suppliers);
+            context.SaveChanges();
+
+            return $"Successfully imported {suppliers.Length}.";
         }
 
-        private static void ResultsFilePath(string file)
+        private static void DatasetsFilePath(string file)
         {
-            filePath = Path.Combine(Directory.GetCurrentDirectory(), "../../../Results", file);
+            filePath = Path.Combine(Directory.GetCurrentDirectory(), "../../../Datasets", file);
         }
     }
 }
