@@ -26,7 +26,7 @@ namespace ProductShop
 
             DatasetsFilePath("categories.json");
             string inputJson = File.ReadAllText(filePath);
-            Console.WriteLine(ImportCategoryProducts(context, inputJson));
+            Console.WriteLine(ImportCategories(context, inputJson));
 
         }
 
