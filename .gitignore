@@ -5,3 +5,5 @@ obj
 Config.cs
 
 appsettings.json
+
+Configuration.cs
