@@ -63,7 +63,7 @@
                 sb.AppendLine(String.Format(SuccessfulImportPlay, p.Title, p.Genre.ToString(), p.Rating));
             }
 
-            context.AddRange(validPlays);
+            context.Plays.AddRange(validPlays);
             context.SaveChanges();
 
             return sb.ToString().TrimEnd();
@@ -94,7 +94,7 @@
 
             }
 
-            context.AddRange(validCasts);
+            context.Casts.AddRange(validCasts);
             context.SaveChanges();
 
             return sb.ToString().TrimEnd();
@@ -132,7 +132,7 @@
                 sb.AppendLine(String.Format(SuccessfulImportTheatre, theatre.Name, theatre.Tickets.Count));
             }
 
-            context.AddRange(validTheatres);
+            context.Theatres.AddRange(validTheatres);
             context.SaveChanges();
 
             return sb.ToString().TrimEnd();
