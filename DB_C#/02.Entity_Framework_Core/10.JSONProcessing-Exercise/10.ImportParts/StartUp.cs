@@ -28,12 +28,9 @@ namespace CarDealer
             context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
 
-            DatasetsFilePath("cars.json");
+            DatasetsFilePath("parts.json");
             string json = File.ReadAllText(filePath);
             Console.WriteLine(ImportParts(context, json));
-
-            ResultsFilePath("ordered-customers.json");
-            File.WriteAllText(filePath, GetOrderedCustomers(context));
 
         }
 
@@ -52,6 +49,7 @@ namespace CarDealer
 
             return $"Successfully imported {parts.Length}.";
         }
+
         private static void DatasetsFilePath(string file)
         {
             filePath = Path.Combine(Directory.GetCurrentDirectory(), "../../../Datasets", file);
