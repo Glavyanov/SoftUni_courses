@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Linq;
 using System.Globalization;
-using System.Linq;
-using System.Text;
+
 using AutoMapper;
+
+using CarDealer.Models;
 using CarDealer.DTO.Cars;
-using CarDealer.DTO.Customer;
 using CarDealer.DTO.Parts;
 using CarDealer.DTO.Sales;
+using CarDealer.DTO.Customer;
 using CarDealer.DTO.Suppliers;
-using CarDealer.Models;
 
 namespace CarDealer
 {
@@ -25,7 +24,6 @@ namespace CarDealer
             //Parts
             this.CreateMap<ImportPartDto, Part>();
             this.CreateMap<Part, ExportPartInfoDto>()
-                .ForMember(dest => dest.Name, mo => mo.MapFrom(s => s.Name))
                 .ForMember(dest => dest.Price, mo => mo.MapFrom(s => s.Price.ToString("F2")));
 
             //Customers
@@ -38,10 +36,7 @@ namespace CarDealer
 
             //Cars
             this.CreateMap<Car, ExportToyotaCarsDto>();
-            this.CreateMap<Car, ExportCarInfoDto>()
-                .ForMember(d => d.Make, mo => mo.MapFrom(s => s.Make))
-                .ForMember(d => d.Model, mo => mo.MapFrom(s => s.Model))
-                .ForMember(d => d.TravelledDistance, mo => mo.MapFrom(s => s.TravelledDistance));
+            this.CreateMap<Car, ExportCarInfoDto>();
 
             this.CreateMap<Car, ExportCarWithPartsDto>()
                 .ForMember(d => d.Car, mo => mo.MapFrom(d => d))
