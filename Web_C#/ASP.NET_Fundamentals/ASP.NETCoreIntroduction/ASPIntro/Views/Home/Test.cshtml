@@ -1,0 +1,43 @@
+﻿@model TestModel
+@{
+    ViewData["Title"] = "Test";
+}
+<style>
+    .my-custom-row{
+        background-color: bisque;
+        height: 400px;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="row my-custom-row justify-content-center align-items-center">
+            <form asp-controller="Home" asp-action="Test" method="post" class="form-horizontal">
+                <div class="col-sm-5 p-3 offset-3">
+                    <div class="p-3 border bg-light">
+                        <label asp-for="@Model.Id"></label>
+                        <input type="number" asp-for="@Model.Id" class="offset-2"/>
+                        <span asp-validation-for="@Model.Id" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-5 p-3 offset-3">
+                    <div class="p-3 border bg-light">
+                        <label asp-for="@Model.Product"></label>
+                        <input type="text" asp-for="@Model.Product" class="offset-1" />
+                        <span asp-validation-for="@Model.Product" class="text-danger"></span>
+                        
+                    </div>
+                </div>
+                <div class="row justify-content-center align-items-center p-3">
+                    <input type="submit" value="Send" class="btn btn-primary" />
+                </div>
+                
+
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
