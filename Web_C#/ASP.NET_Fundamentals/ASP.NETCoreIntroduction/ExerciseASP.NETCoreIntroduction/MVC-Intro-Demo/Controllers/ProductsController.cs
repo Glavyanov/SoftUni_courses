@@ -34,5 +34,17 @@ namespace MVC_Intro_Demo.Controllers
             return View(this.products);
         }
 
+        [HttpGet]
+        public IActionResult ById(int id)
+        {
+            ProductViewModel product = this.products.FirstOrDefault(p => p.Id == id);
+            if (product == null)
+            {
+                return BadRequest();
+            }
+
+            return View(product);
+        }
+
     }
 }
