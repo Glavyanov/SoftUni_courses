@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MVC_Intro_Demo.Models;
-using System.Text.Json;
-
-namespace MVC_Intro_Demo.Controllers
+﻿namespace MVC_Intro_Demo.Controllers
 {
+    using System.Text;
+    using System.Text.Json;
+
+    using MVC_Intro_Demo.Models;
+
+    using Microsoft.AspNetCore.Mvc;
+
     public class ProductsController : Controller
     {
         private readonly IEnumerable<ProductViewModel> products = 
@@ -50,6 +53,18 @@ namespace MVC_Intro_Demo.Controllers
         [HttpGet]
         public IActionResult AllAsJson() => 
             Json(this.products, new JsonSerializerOptions() { WriteIndented = true });
+
+        [HttpGet]
+        public IActionResult AllAsText()
+        {
+            StringBuilder sb = new();
+            foreach (var pr in this.products)
+            {
+                sb.AppendLine($"Product {pr.Id}: {pr.Name} - {pr.Price}lv");
+            }
+
+            return Content(sb.ToString());
+        }
 
     }
 }
