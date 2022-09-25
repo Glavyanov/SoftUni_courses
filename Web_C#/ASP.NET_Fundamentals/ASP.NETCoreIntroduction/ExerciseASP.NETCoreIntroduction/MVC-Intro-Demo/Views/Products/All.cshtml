@@ -1,0 +1,15 @@
+﻿@model IEnumerable<ProductViewModel>
+@{
+    ViewBag.Title = "All Products";
+}
+
+<div class="card" style="width: 18rem;">
+    <div class="card-header">@ViewBag.Title</div>
+    <ul class="list-group list-group-flush">
+        @foreach (var pr in Model)
+        {
+              <li class="list-group-item">N.@pr.Id: @pr.Name - @pr.Price lv.</li>
+        }
+    </ul>
+    
+</div>
