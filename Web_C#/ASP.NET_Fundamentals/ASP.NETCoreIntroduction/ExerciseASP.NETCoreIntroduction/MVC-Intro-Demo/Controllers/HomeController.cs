@@ -37,7 +37,7 @@ namespace MVC_Intro_Demo.Controllers
         [HttpGet]
         public IActionResult Numbers()
         {
-            ViewBag.Message = "Nums 1 ... 50";
+            ViewBag.Message = "Nums 1 ... 10";
 
             return View();
         }
