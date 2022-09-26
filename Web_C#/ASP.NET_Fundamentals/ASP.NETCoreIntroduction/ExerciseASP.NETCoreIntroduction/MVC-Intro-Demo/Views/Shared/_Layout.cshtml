@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MVC_Intro_Demo.styles.css" asp-append-version="true" />
+   
 </head>
 <body>
     <header>
@@ -33,6 +34,15 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="NumbersToN">NumbersToN</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">Products</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" asp-controller="Products" asp-action="My-Products">All</a>
+                                <a class="dropdown-item" asp-controller="Products" asp-action="AllAsJson">All (JSON)</a>
+                                <a class="dropdown-item" asp-controller="Products" asp-action="AllAsText">All (Plain Text)</a>
+                                <a class="dropdown-item" asp-controller="Products" asp-action="AllAsTextFile">All (Text File)</a>
+                            </div>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
