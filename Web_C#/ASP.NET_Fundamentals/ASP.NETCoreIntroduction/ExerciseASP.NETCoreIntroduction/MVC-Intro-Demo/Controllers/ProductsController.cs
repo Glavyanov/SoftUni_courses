@@ -8,6 +8,7 @@
     using Microsoft.AspNetCore.Mvc;
     using System.Net.Mime;
     using System.Net.Http.Headers;
+    using Microsoft.CodeAnalysis.CSharp.Syntax;
 
     public class ProductsController : Controller
     {
@@ -36,10 +37,9 @@
 
         [HttpGet]
         [ActionName("My-Products")]
-        public IActionResult All()
-        {
-            return View(this.products);
-        }
+        public IActionResult All(string keyword) =>
+            keyword != null ? View(this.products.Where(p => p.Name.ToLower().Contains(keyword.ToLower())))
+                            : View(this.products);
 
         [HttpGet]
         public IActionResult ById(int id)
