@@ -1,0 +1,57 @@
+﻿@model ChatViewModel
+
+@{
+    ViewBag.Title = "All Messages";
+}
+
+<h3>Messages: </h3>
+
+@if(Model.Messages != null)
+{
+    @foreach (var message in Model.Messages)
+    {
+        <div class="card .bg-light col-6">
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <p>@message.MessageText</p>
+                    <footer class="blockquote-footer">@message.Sender</footer>
+                </blockquote>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="p-3 mb-2 bg-info">
+        <strong><p>No messages yet!</p></strong>
+    </div>
+}
+<hr>
+<style>
+    .card-header {
+        background-color: bisque;
+    }
+</style>
+
+<form asp-controller="Chat" asp-action="Send" method="post">
+    <div class="form-group card-header row">
+        <div class="col-12">
+            <h5>Send a new message</h5>
+        </div>
+        <div class="col-8">
+            <label>Message: </label>
+            <textarea asp-for="CurrentMessage.MessageText" class="form-control" rows="3"></textarea>
+            <span asp-validation-for="CurrentMessage.MessageText" class="text-danger"></span>
+        </div>
+        <div class="col-4">
+            <label>Sender Name: </label>
+            <input asp-for="CurrentMessage.Sender" class="form-control" rows="3">
+            <span asp-validation-for="CurrentMessage.Sender" class="text-danger"></span>
+        <input class="btn btn-primary mt-2 float-end" type="submit" value="Send" />
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
