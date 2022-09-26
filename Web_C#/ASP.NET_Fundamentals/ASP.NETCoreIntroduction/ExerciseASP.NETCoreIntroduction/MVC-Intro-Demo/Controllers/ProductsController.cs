@@ -35,6 +35,7 @@
         };
 
         [HttpGet]
+        [ActionName("My-Products")]
         public IActionResult All()
         {
             return View(this.products);
