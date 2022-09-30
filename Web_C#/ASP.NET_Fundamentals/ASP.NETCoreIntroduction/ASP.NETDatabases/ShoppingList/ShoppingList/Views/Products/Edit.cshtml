@@ -16,18 +16,21 @@
                     <span asp-validation-for="Name" class="small text-danger"></span>
                 </div>
             </div>
-            @if (Model != null && Model?.Name.Length > 80)
+            @if (Model != null)
             {
                 @*<p id="nameMaxValidation" style="color:red">The maximum of characters for Name is 80!</p>*@
-                <script>
-                    alert("The maximum of characters for Name is 80!");
-                </script>
-            }
+                 @if(Model.Name.Length > 1001)
+                 {
+                        <script>
+                            alert("The maximum of characters for Name is 1000!");
+                        </script>
+                 }
+            }@*
             else{
                 <script>
                     document.getElementById("nameMaxValidation").style.display="none";
                 </script>
-            }
+            }*@
             <input type="submit" class="btn btn-primary mt-3" value="Edit" />
         </form>
     </div>

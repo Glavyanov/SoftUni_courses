@@ -95,5 +95,17 @@ namespace ShoppingList.Controllers
 
             return RedirectToAction("All");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(Guid id)
+        {
+            var note = await this.data.ProductsNotes.FirstOrDefaultAsync(p => p.ProductId == id);
+            if (note == null)
+            {
+                return View(new ProductNoteDto() { Content = "No Content!" });
+            }
+
+            return View(new ProductNoteDto() { Id = note!.Id, Content = note.Content});
+        }
     }
 }
