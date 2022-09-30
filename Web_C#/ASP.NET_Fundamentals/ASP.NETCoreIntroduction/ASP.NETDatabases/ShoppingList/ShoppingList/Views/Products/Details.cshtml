@@ -1,0 +1,36 @@
+﻿@model ProductNoteDto
+
+@{
+    ViewBag.Title = "Details product";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+ <div class="row">
+        <form method="post">
+            <div class="form-group">
+                <div class="mb-3">
+                    <label asp-for="Content"></label>
+                    <textarea asp-for="Content" class="form-control" rows="10" value="@Model.Content"></textarea>
+                    <span asp-validation-for="Content" class="small text-danger"></span>
+                </div>
+            </div>
+        @if (Model != null)
+        {
+            @*<p id="nameMaxValidation" style="color:red">The maximum of characters for Name is 80!</p>*@
+            @if (Model.Content!.Length > 3001)
+                 {
+                        <script>
+                            alert("The maximum of characters for Name is 3000!");
+                        </script>
+                 }
+                   
+        }
+            @*<input type="submit" class="btn btn-primary mt-3" value="Edit" />*@
+        </form>
+    </div>
+
+@section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+}
