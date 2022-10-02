@@ -1,4 +1,4 @@
-﻿@model ProductNoteDto
+﻿@model ProductDetailsDto
 
 @{
     ViewBag.Title = "Details product";
@@ -8,28 +8,40 @@
 <hr />
 
  <div class="row">
-        <form method="post">
-            <div class="form-group">
-                <div class="mb-3">
-                    <label asp-for="Content"></label>
-                    <textarea asp-for="Content" class="form-control" rows="10" value="@Model.Content"></textarea>
-                    <span asp-validation-for="Content" class="small text-danger"></span>
-                </div>
-            </div>
-        @if (Model != null)
+
+    <h5>@Model.ProductName</h5>
+    @if (Model.ProductNotes?.Count == 0)
+    {
+        <h6>No Content!</h6>
+    }
+    else
+    {
+        @foreach (var note in Model.ProductNotes)
         {
-            @*<p id="nameMaxValidation" style="color:red">The maximum of characters for Name is 80!</p>*@
-            @if (Model.Content!.Length > 3001)
-                 {
+            <form method="post">
+                <div class="form-group">
+                    <div class="mb-3">
+                                <textarea asp-for="@note.Content" class="form-control" rows="10" value="@note.Content"></textarea>
+                                <span asp-validation-for="@note.Content" class="small text-danger"></span>
+                    </div>
+                </div>
+                @if (note.Content != null)
+                {
+                    @*<p id="nameMaxValidation" style="color:red">The maximum of characters for Name is 80!</p>*@
+                    @if (note.Content.Length > 3001)
+                    {
                         <script>
                             alert("The maximum of characters for Name is 3000!");
                         </script>
-                 }
-                   
+                    }
+
+                }
+                @*<input type="submit" class="btn btn-primary mt-3" value="Edit" />*@
+            </form>
         }
-            @*<input type="submit" class="btn btn-primary mt-3" value="Edit" />*@
-        </form>
-    </div>
+    }
+    
+</div>
 
 @section Scripts {
         <partial name="_ValidationScriptsPartial" />

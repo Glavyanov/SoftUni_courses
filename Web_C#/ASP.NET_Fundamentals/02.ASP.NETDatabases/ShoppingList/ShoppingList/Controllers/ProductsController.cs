@@ -99,13 +99,31 @@ namespace ShoppingList.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(Guid id)
         {
-            var note = await this.data.ProductsNotes.FirstOrDefaultAsync(p => p.ProductId == id);
-            if (note == null)
+            var productAndNotes = await this.data.Products
+                .AsNoTracking()
+                .Where(p => p.Id == id && p.IsActive)
+                .Select(x => new ProductDetailsDto()
+                {
+                    ProductName = x.Name,
+                    ProductNotes = x.ProductNotes.Select(n => new ProductNoteDto()
+                    {
+                        Id = n.Id,
+                        Content = n.Content
+                    })
+                    .ToList()
+                }).FirstOrDefaultAsync();
+
+            if(productAndNotes == null)
             {
-                return View(new ProductNoteDto() { Content = "No Content!" });
+                return BadRequest();
             }
 
-            return View(new ProductNoteDto() { Id = note!.Id, Content = note.Content});
+            if (productAndNotes?.ProductNotes?.Count == 0)
+            {
+                return View(new ProductDetailsDto() { ProductName = productAndNotes.ProductName, ProductNotes = new List<ProductNoteDto>() });
+            }
+
+            return View(productAndNotes);
         }
     }
 }
