@@ -21,8 +21,7 @@
                             <a asp-controller="Posts" asp-action="Edit" asp-route-id="@post.Id" class="btn btn-warning">Edit</a>
                             <form class="mt-2" asp-controller="Posts" asp-action="Delete" asp-route-id="@post.Id">
                                 <div class="d-grid gap-2">
-                                    <input type="submit" value="Delete" class="btn btn-danger mb-2" 
-                                    onclick="return confirm('Are you sure to want to delete post: @post.Title')"/>
+                                    <input type="submit" value="Delete" class="btn btn-danger mb-2" onclick="myConfirm(event)" />
                                 </div>
                             </form>
                         </div>
@@ -38,3 +37,32 @@ else
     <p class="text-center">No posts yet!</p>
 }
 
+@section Scripts {
+    <script>
+        function myConfirm(e) {
+
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    ).then((resultDeleted) => {
+
+                        e.target.parentElement.parentElement.submit();
+                    })
+                }
+            })
+        }
+    </script>
+}
