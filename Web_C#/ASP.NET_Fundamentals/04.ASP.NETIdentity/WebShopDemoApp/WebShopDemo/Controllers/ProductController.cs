@@ -57,6 +57,9 @@ namespace WebShopDemo.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpGet]
+        public IActionResult Delete() => RedirectToAction(nameof(Index));
+
         [HttpPost]
         public async Task<IActionResult> Delete([FromForm]string id)
         {
