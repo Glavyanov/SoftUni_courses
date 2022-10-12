@@ -9,8 +9,7 @@ namespace WebShopDemo.Controllers
     /// Web shop products
     /// </summary>
 
-    [Authorize]
-    public class ProductController : Controller
+    public class ProductController : BaseController
     {
         private readonly IProductService productService;
 
@@ -29,7 +28,7 @@ namespace WebShopDemo.Controllers
         {
             var products = await productService.GetAll();
             ViewData["Title"] = "Products";
-
+            
             return View(products);
         }
 

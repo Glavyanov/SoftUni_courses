@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using WebShopDemo.Core.Data.Models.Accounts;
@@ -9,7 +10,7 @@ namespace WebShopDemo.Controllers
     /// <summary>
     /// Web shop accounts
     /// </summary>
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
 
         private readonly UserManager<ApplicationUser> userManager;
@@ -27,10 +28,12 @@ namespace WebShopDemo.Controllers
         /// Load the register view
         /// </summary>
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Register() => View();
         
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (!ModelState.IsValid)
@@ -62,6 +65,7 @@ namespace WebShopDemo.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Login(string? returnURL = null)
         {
             var model = new LoginViewModel()
@@ -73,6 +77,7 @@ namespace WebShopDemo.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (!ModelState.IsValid)
