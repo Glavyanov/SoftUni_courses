@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using WebShopDemo.Core.Data.Models.Accounts;
 using WebShopDemo.Models;
+using static WebShopDemo.Core.Data.ValidationConstants.ClaimsConstants;
 
 namespace WebShopDemo.Controllers
 {
@@ -51,9 +52,13 @@ namespace WebShopDemo.Controllers
             };
 
             var result = await userManager.CreateAsync(user, model.Password);
+
             if (result.Succeeded)
             {
                 await signInManager.SignInAsync(user, isPersistent: false);
+                await userManager
+                    .AddClaimAsync(user, new System.Security.Claims.Claim(FirstName, user.FirstName ?? user.Email));
+
                 return RedirectToAction("Index", "Home");
             }
             foreach (var item in result.Errors)
@@ -88,6 +93,7 @@ namespace WebShopDemo.Controllers
             var user = await userManager.FindByEmailAsync(model.Email);
             if (user != null)
             {
+                
                 var result = await signInManager.PasswordSignInAsync(user, model.Password, false, false);
 
                 if (result.Succeeded)
