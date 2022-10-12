@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using WebShopDemo.Core.Contracts;
@@ -42,6 +43,7 @@ namespace WebShopDemo.Core.Services
         /// <returns></returns>
         public async Task Add(ProductDto productDto)
         {
+
             var product = new Product()
             {
                 Name = productDto.Name,
@@ -72,13 +74,24 @@ namespace WebShopDemo.Core.Services
         /// <returns>List of products</returns>
         public async Task<IEnumerable<ProductDto>> GetAll()
         {
-            return await repo.AllReadonly<Product>()
-                .Where(p => p.IsActive)
+            return await repo.AllReadonly<Product>(p => p.IsActive)
                 .Select(p => new ProductDto()
                 {
                     Id = p.Id,
                     Name = p.Name,
-                    Price= p.Price,
+                    Price = p.Price,
+                    Quantity = p.Quantity
+                }).ToListAsync();
+        }
+
+        public async Task<IEnumerable<ProductDto>> GetAllWhere(Expression<Func<Product, bool>> search)
+        {
+            return await repo.AllReadonly(search)
+                .Select(p => new ProductDto()
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Price = p.Price,
                     Quantity = p.Quantity
                 }).ToListAsync();
         }

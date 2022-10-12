@@ -9,6 +9,12 @@ package product;
 service Product {
   // Sends a greeting
   rpc GetAll (google.protobuf.Empty) returns (ProductList);
+  rpc GetAllMouse (google.protobuf.Empty) returns (ProductList);
+  rpc GetAllByName (ProductRequest) returns (ProductList);
+}
+
+message	ProductRequest {
+	string name = 1;
 }
 
 message ProductList {
