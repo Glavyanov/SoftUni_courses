@@ -2,9 +2,11 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.EntityFrameworkCore;
 using WebShopDemo.Core.Data.Models.Accounts;
 using WebShopDemo.Models;
 using static WebShopDemo.Core.Data.ValidationConstants.ClaimsConstants;
+using static WebShopDemo.Core.Data.ValidationConstants.RolesConstants;
 
 namespace WebShopDemo.Controllers
 {
@@ -16,13 +18,16 @@ namespace WebShopDemo.Controllers
 
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
+        private readonly RoleManager<IdentityRole> roleManager;
 
         public AccountController(
             UserManager<ApplicationUser> _userManager,
-            SignInManager<ApplicationUser> _signInManager)
+            SignInManager<ApplicationUser> _signInManager,
+            RoleManager<IdentityRole> _roleManager)
         {
             userManager = _userManager;
             signInManager = _signInManager;
+            roleManager = _roleManager;
         }
 
         /// <summary>
@@ -115,6 +120,28 @@ namespace WebShopDemo.Controllers
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
+
+        public async Task<IActionResult> CreateRoles()
+        {
+            await roleManager.CreateAsync(new IdentityRole(Manager));
+            await roleManager.CreateAsync(new IdentityRole(Supervisor));
+            await roleManager.CreateAsync(new IdentityRole(Admin));
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        public async Task<IActionResult> AddRoles()
+        {
+            var users = await userManager.Users.ToListAsync();
+
+            if( users.Count >= 2 )
+            {
+                await userManager.AddToRoleAsync(users[0], Manager);
+                await userManager.AddToRolesAsync(users[^1], new string[] { Manager, Supervisor });
+            } 
+
             return RedirectToAction("Index", "Home");
         }
     }

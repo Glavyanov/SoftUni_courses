@@ -5,6 +5,8 @@ using WebShopDemo.Core.Data;
 using WebShopDemo.Core.Data.Common;
 using WebShopDemo.Core.Data.Models.Accounts;
 using WebShopDemo.Core.Services;
+using static WebShopDemo.Core.Data.ValidationConstants.PolicyConstants;
+using static WebShopDemo.Core.Data.ValidationConstants.RolesConstants;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,8 +23,16 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
     options.Password.RequiredLength = 6;
     options.User.RequireUniqueEmail = true;
 })
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDemoDbContext>();
+
 builder.Services.AddControllersWithViews();
+
+//Add Policy
+builder.Services.AddAuthorization(options =>
+    options.AddPolicy(Deletable, policy =>
+        policy.RequireAssertion(context =>
+            context.User.IsInRole(Manager) && context.User.IsInRole(Supervisor))));
 
 //If user want some action but not logged in
 builder.Services.ConfigureApplicationCookie(opt =>

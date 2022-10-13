@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using WebShopDemo.Core.Contracts;
 using WebShopDemo.Core.Models;
+using static WebShopDemo.Core.Data.ValidationConstants.RolesConstants;
+using static WebShopDemo.Core.Data.ValidationConstants.PolicyConstants;
 
 namespace WebShopDemo.Controllers
 {
@@ -33,6 +35,7 @@ namespace WebShopDemo.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = $"{Manager}, {Supervisor}")]
         public IActionResult Add()
         {
             var model = new ProductDto();
@@ -57,9 +60,11 @@ namespace WebShopDemo.Controllers
         }
 
         [HttpGet]
+        [Authorize(Policy = Deletable)]
         public IActionResult Delete() => RedirectToAction(nameof(Index));
 
         [HttpPost]
+        [Authorize(Policy = Deletable)]
         public async Task<IActionResult> Delete([FromForm]string id)
         {
             Guid idGuid = Guid.Parse(id);

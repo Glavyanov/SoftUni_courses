@@ -1,4 +1,7 @@
 ﻿@model IEnumerable<ProductDto>
+@using Microsoft.AspNetCore.Authorization
+@using static WebShopDemo.Core.Data.ValidationConstants.PolicyConstants;
+@inject IAuthorizationService AuthorizationService
 
 <h1>@ViewData["Title"]</h1>
 
@@ -27,7 +30,7 @@
                 <td>
                     <form asp-action="Delete" asp-controller="Product" method="post">
                         <input name="id" type="hidden" value="@item.Id.ToString()" />
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                                <button type="submit" class="btn btn-danger" @((await AuthorizationService.AuthorizeAsync(User, Deletable)).Succeeded ? "" : "disabled")>Delete</button>
                     </form>
                 </td>
             </tr>
