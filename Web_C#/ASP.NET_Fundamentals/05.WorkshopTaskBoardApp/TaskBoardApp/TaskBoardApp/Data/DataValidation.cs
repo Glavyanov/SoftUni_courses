@@ -8,6 +8,8 @@
             public const int FirstNameMaxLength = 15;
             public const int LastNameMinLength = 2;
             public const int LastNameMaxLength = 15;
+            public const int UserNameMinLength = 2;
+            public const int UserNameMaxLength = 15;
         }
 
         public static class TaskConstants
