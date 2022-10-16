@@ -31,8 +31,10 @@ namespace TaskBoardApp.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Create), model);
+                model.Boards = await GetBoards();
+                return View(model);
             }
+
             if (!(await GetBoards()).Any(b => b.Id == model.BoardId))
             {
                 ModelState.AddModelError(nameof(model.BoardId), "Board does not exist.");
