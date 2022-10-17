@@ -39,6 +39,8 @@ namespace TaskBoardApp.Controllers
             if (!(await GetBoards()).Any(b => b.Id == model.BoardId))
             {
                 ModelState.AddModelError(nameof(model.BoardId), "Board does not exist.");
+                return View(model);
+
             }
 
             string currentUserId = GetUserId();
@@ -81,6 +83,61 @@ namespace TaskBoardApp.Controllers
             }
 
             return View(task);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var task = await this.data.Tasks.AsNoTracking().FirstOrDefaultAsync(t => t.Id == id);
+            if (task == null)
+            {
+                return BadRequest();
+            }
+            string currentUserId = GetUserId();
+            if (currentUserId != task.OwnerId)
+            {
+                return Unauthorized();
+            }
+
+            var taskFormModel = new TaskFormModel()
+            {
+                Title = task.Title,
+                Description = task.Description,
+                BoardId = task.BoardId,
+                Boards = await GetBoards()
+            };
+
+
+            return View(taskFormModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, TaskFormModel model)
+        {
+            var task = await this.data.Tasks.FindAsync(id);
+            if (task == null)
+            {
+                return BadRequest();
+            }
+            string currentUserId = GetUserId();
+            if (currentUserId != task.OwnerId)
+            {
+                return Unauthorized();
+            }
+
+            if(!(await GetBoards()).Any(b => b.Id == model.BoardId))
+            {
+                ModelState.AddModelError(nameof(model.BoardId), "Board does not exist.");
+                return View(model);
+
+            }
+
+            task.Title = model.Title;
+            task.Description = model.Description;
+            task.BoardId = model.BoardId;
+
+            await this.data.SaveChangesAsync();
+
+            return RedirectToAction("Index", "Boards");
         }
 
         private string GetUserId() => User.FindFirstValue(ClaimTypes.NameIdentifier);
