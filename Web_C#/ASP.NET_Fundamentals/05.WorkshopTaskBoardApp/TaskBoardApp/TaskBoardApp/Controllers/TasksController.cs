@@ -4,6 +4,7 @@ using System.Security.Claims;
 using TaskBoardApp.Data;
 using TaskBoardApp.Models.Tasks;
 using TaskBoardApp.Data.Entities;
+using System.Globalization;
 
 namespace TaskBoardApp.Controllers
 {
@@ -55,6 +56,31 @@ namespace TaskBoardApp.Controllers
             await this.data.SaveChangesAsync();
 
             return RedirectToAction("Index", "Boards");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            var task = await this.data.Tasks
+                .AsNoTracking()
+                .Where(t => t.Id == id)
+                .Select(t => new TaskDetailsViewModel()
+                {
+                    Id = t.Id,
+                    Title = t.Title,
+                    Description = t.Description,
+                    CreatedOn = t.CreatedOn.HasValue ? t.CreatedOn.Value.ToString("dd/MM/yyyy HH:mm") : String.Empty,
+                    Board = t.Board.Name,
+                    Owner = t.Owner.UserName
+
+                }).FirstOrDefaultAsync();
+
+            if (task == null)
+            {
+                return BadRequest();
+            }
+
+            return View(task);
         }
 
         private string GetUserId() => User.FindFirstValue(ClaimTypes.NameIdentifier);
