@@ -84,6 +84,7 @@ namespace TaskBoardApp.Controllers
 
             return View(task);
         }
+
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
@@ -127,14 +128,59 @@ namespace TaskBoardApp.Controllers
             if(!(await GetBoards()).Any(b => b.Id == model.BoardId))
             {
                 ModelState.AddModelError(nameof(model.BoardId), "Board does not exist.");
-                return View(model);
 
+                return View(model);
             }
 
             task.Title = model.Title;
             task.Description = model.Description;
             task.BoardId = model.BoardId;
 
+            await this.data.SaveChangesAsync();
+
+            return RedirectToAction("Index", "Boards");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var task = await this.data.Tasks.AsNoTracking().FirstOrDefaultAsync(t => t.Id == id);
+            if (task == null)
+            {
+                return BadRequest();
+            }
+            string currentUserId = GetUserId();
+            if (currentUserId != task.OwnerId)
+            {
+                return Unauthorized();
+            }
+
+            var taskViewModel = new TaskViewModel()
+            {
+                Id = task.Id,
+                Description = task.Description,
+                Title = task.Title,
+            };
+
+            return View(taskViewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(TaskViewModel model)
+        {
+
+            var task = await this.data.Tasks.FindAsync(model.Id);
+            if (task == null)
+            {
+                return BadRequest();
+            }
+            string currentUserId = GetUserId();
+            if (currentUserId != task.OwnerId)
+            {
+                return Unauthorized();
+            }
+
+            this.data.Tasks.Remove(task);
             await this.data.SaveChangesAsync();
 
             return RedirectToAction("Index", "Boards");
