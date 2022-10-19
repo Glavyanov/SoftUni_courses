@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections;
+using System.Security.Claims;
 using Watchlist.Data;
 using Watchlist.Data.Entities;
 using Watchlist.Models;
@@ -82,6 +83,84 @@ namespace Watchlist.Controllers
             return RedirectToAction(nameof(All));
         }
 
+        [HttpPost]
+        public async Task<IActionResult> AddToCollection(int movieId)
+        {
+            Movie movie = await this.data.Movies.AsNoTracking().FirstOrDefaultAsync(x => x.Id == movieId);
+            if (movie == null) return RedirectToAction(nameof(All));
+
+            string currentUserId = GetCurrentUser();
+            User user = await this.data.Users
+                                       .Include(x => x.UsersMovie)
+                                       .FirstOrDefaultAsync(x => x.Id == currentUserId);
+
+            if(user == null) return RedirectToAction(nameof(All));
+
+            if (!user.UsersMovie.Any(x => x.MovieId == movieId))
+            {
+                user.UsersMovie.Add(new UserMovie()
+                {
+                    MovieId = movieId,
+                    UserId = currentUserId,
+                    Movie = movie,
+                    User = user
+                });
+
+                await this.data.SaveChangesAsync();
+            }
+
+            return RedirectToAction(nameof(All));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Watched()
+        {
+            string currentUserId = GetCurrentUser();
+            List<MoviesAllViewModel> movies = await this.data.Users
+                            .Include(u => u.UsersMovie)
+                            .ThenInclude(m => m.Movie)
+                            .Where(u => u.Id == currentUserId)
+                            .SelectMany(u => u.UsersMovie.Select(x => new MoviesAllViewModel()
+                            {
+                                Title = x.Movie.Title,
+                                Director = x.Movie.Director,
+                                Genre = x.Movie.Genre.Name,
+                                Id = x.MovieId,
+                                ImageUrl = x.Movie.ImageUrl,
+                                Rating = x.Movie.Rating,
+
+                            }).ToList())
+                            .ToListAsync();
+
+            return View(movies);
+        }
+
+        public async Task<IActionResult> RemoveFromCollection(int movieId)
+        {
+            UserMovie movie = await this.data.UsersMovies
+                .FirstOrDefaultAsync(x => x.MovieId == movieId);
+
+            if (movie == null) return RedirectToAction(nameof(Watched));
+
+            string currentUserId = GetCurrentUser();
+            User user = await this.data.Users
+                                       .Include(x => x.UsersMovie)
+                                       .FirstOrDefaultAsync(x => x.Id == currentUserId);
+
+            if (user == null) return RedirectToAction(nameof(Watched));
+
+            if (user.UsersMovie.Any(x => x.MovieId == movieId))
+            {
+                user.UsersMovie.Remove(movie);
+
+                await this.data.SaveChangesAsync();
+            }
+
+            return RedirectToAction(nameof(Watched));
+        }
+
         private async Task<IEnumerable<Genre>> GetGenres() => await this.data.Genres.AsNoTracking().ToListAsync();
+
+        private string GetCurrentUser() => User.FindFirstValue(ClaimTypes.NameIdentifier);
     }
 }

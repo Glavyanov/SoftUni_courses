@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using Watchlist.Models;
+using Watchlist.Controllers;
 
 namespace Watchlist.Controllers
 {
@@ -8,6 +9,10 @@ namespace Watchlist.Controllers
     {
         public IActionResult Index()
         {
+            if (User?.Identity?.IsAuthenticated?? false)
+            {
+                return RedirectToAction("All", "Movies");
+            }
             return View();
         }
 

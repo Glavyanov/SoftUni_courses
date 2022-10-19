@@ -23,6 +23,11 @@ namespace Watchlist.Controllers
         [AllowAnonymous]
         public IActionResult Login()
         {
+            if (User?.Identity?.IsAuthenticated ?? false)
+            {
+                return RedirectToAction("All", "Movies");
+            }
+
             LoginViewModel model = new();
 
             return View(model);
@@ -55,6 +60,11 @@ namespace Watchlist.Controllers
         [AllowAnonymous]
         public IActionResult Register()
         {
+            if (User?.Identity?.IsAuthenticated ?? false)
+            {
+                return RedirectToAction("All", "Movies");
+            }
+
             RegisterViewModel model = new();
 
             return View(model);
