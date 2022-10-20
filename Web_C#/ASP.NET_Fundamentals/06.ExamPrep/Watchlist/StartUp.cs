@@ -19,9 +19,13 @@ builder.Services.AddDefaultIdentity<User>(options =>
     options.Password.RequireNonAlphanumeric = false;
     options.Password.RequiredUniqueChars = 0;
     options.Password.RequireUppercase = false;
-    //TO DO:
+    options.Password.RequiredLength = 5;
+
 })
     .AddEntityFrameworkStores<WatchlistDbContext>();
+
+builder.Services.ConfigureApplicationCookie(options => options.LoginPath = "/User/Login");
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
