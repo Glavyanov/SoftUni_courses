@@ -91,14 +91,14 @@ namespace Watchlist.Controllers
 
             string currentUserId = GetCurrentUser();
             User user = await this.data.Users
-                                       .Include(x => x.UsersMovie)
+                                       .Include(x => x.UsersMovies)
                                        .FirstOrDefaultAsync(x => x.Id == currentUserId);
 
             if(user == null) return RedirectToAction(nameof(All));
 
-            if (!user.UsersMovie.Any(x => x.MovieId == movieId))
+            if (!user.UsersMovies.Any(x => x.MovieId == movieId))
             {
-                user.UsersMovie.Add(new UserMovie()
+                user.UsersMovies.Add(new UserMovie()
                 {
                     MovieId = movieId,
                     UserId = currentUserId,
@@ -117,10 +117,10 @@ namespace Watchlist.Controllers
         {
             string currentUserId = GetCurrentUser();
             List<MoviesAllViewModel> movies = await this.data.Users
-                            .Include(u => u.UsersMovie)
+                            .Include(u => u.UsersMovies)
                             .ThenInclude(m => m.Movie)
                             .Where(u => u.Id == currentUserId)
-                            .SelectMany(u => u.UsersMovie.Select(x => new MoviesAllViewModel()
+                            .SelectMany(u => u.UsersMovies.Select(x => new MoviesAllViewModel()
                             {
                                 Title = x.Movie.Title,
                                 Director = x.Movie.Director,
@@ -131,6 +131,8 @@ namespace Watchlist.Controllers
 
                             }).ToList())
                             .ToListAsync();
+
+            if (movies == null) throw new ArgumentException("Invalid user ID");
 
             return View(movies);
         }
@@ -144,14 +146,14 @@ namespace Watchlist.Controllers
 
             string currentUserId = GetCurrentUser();
             User user = await this.data.Users
-                                       .Include(x => x.UsersMovie)
+                                       .Include(x => x.UsersMovies)
                                        .FirstOrDefaultAsync(x => x.Id == currentUserId);
 
             if (user == null) return RedirectToAction(nameof(Watched));
 
-            if (user.UsersMovie.Any(x => x.MovieId == movieId))
+            if (user.UsersMovies.Any(x => x.MovieId == movieId))
             {
-                user.UsersMovie.Remove(movie);
+                user.UsersMovies.Remove(movie);
 
                 await this.data.SaveChangesAsync();
             }

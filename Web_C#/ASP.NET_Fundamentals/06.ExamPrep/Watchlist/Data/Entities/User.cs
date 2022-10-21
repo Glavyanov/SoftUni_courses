@@ -4,7 +4,7 @@ namespace Watchlist.Data.Entities
 {
     public class User : IdentityUser
     {
-        public ICollection<UserMovie> UsersMovie { get; set; } = new HashSet<UserMovie>();
+        public ICollection<UserMovie> UsersMovies { get; set; } = new HashSet<UserMovie>();
 
     }
 }
