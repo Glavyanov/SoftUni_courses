@@ -94,7 +94,7 @@ namespace Watchlist.Controllers
                                        .Include(x => x.UsersMovies)
                                        .FirstOrDefaultAsync(x => x.Id == currentUserId);
 
-            if(user == null) return RedirectToAction(nameof(All));
+            if (user == null) return RedirectToAction(nameof(All));
 
             if (!user.UsersMovies.Any(x => x.MovieId == movieId))
             {
@@ -139,24 +139,16 @@ namespace Watchlist.Controllers
 
         public async Task<IActionResult> RemoveFromCollection(int movieId)
         {
-            UserMovie movie = await this.data.UsersMovies
-                .FirstOrDefaultAsync(x => x.MovieId == movieId);
-
-            if (movie == null) return RedirectToAction(nameof(Watched));
-
             string currentUserId = GetCurrentUser();
-            User user = await this.data.Users
-                                       .Include(x => x.UsersMovies)
-                                       .FirstOrDefaultAsync(x => x.Id == currentUserId);
 
+            User user = await this.data.Users.Include(x => x.UsersMovies).FirstOrDefaultAsync(x => x.Id == currentUserId);
             if (user == null) return RedirectToAction(nameof(Watched));
 
-            if (user.UsersMovies.Any(x => x.MovieId == movieId))
-            {
-                user.UsersMovies.Remove(movie);
+            UserMovie movie = user.UsersMovies.FirstOrDefault(m => m.MovieId == movieId);
+            if (movie == null) return RedirectToAction(nameof(Watched));
 
-                await this.data.SaveChangesAsync();
-            }
+            user.UsersMovies.Remove(movie);
+            await this.data.SaveChangesAsync();
 
             return RedirectToAction(nameof(Watched));
         }
