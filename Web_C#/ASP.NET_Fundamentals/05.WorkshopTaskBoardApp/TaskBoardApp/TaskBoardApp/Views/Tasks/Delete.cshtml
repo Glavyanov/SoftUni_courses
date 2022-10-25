@@ -17,8 +17,35 @@
                 <p class="card-text"><span class="fw-bold">Description: </span>@Model.Description</p>
             </div>
             <div class="mb-3 d-flex justify-content-center">
-                <input type="submit" value="Delete" class="btn btn-danger" />
+                <input type="submit" value="Delete" class="btn btn-danger" onclick="myConfirm(event)" />
             </div>
         </div>
     </div>
 </form>
+
+@section Scripts {
+        <script>
+            function myConfirm(e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        ).then((resultDeleted) => {
+                                    e.target.parentElement.parentElement.parentElement.parentElement.submit();
+                        })
+                    }
+                })
+            }
+        </script>
+}
