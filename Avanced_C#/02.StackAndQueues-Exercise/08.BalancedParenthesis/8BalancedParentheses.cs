@@ -43,6 +43,7 @@ namespace _08.BalancedParentheses
                     else
                     {
                         unbalanced = false;
+                        break;
                     }
                     
                 }
