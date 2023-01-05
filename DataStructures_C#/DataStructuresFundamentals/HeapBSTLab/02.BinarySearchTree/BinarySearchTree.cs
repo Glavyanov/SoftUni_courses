@@ -55,14 +55,12 @@
 
         public IBinarySearchTree<T> Search(T element)
         {
-            IBinarySearchTree<T> tree = null;
+            var node = this.Contains(element, this.root);
 
-            if (this.Contains(element))
-            {
-                var node = this.Contains(element, this.root);
+            if (node is null)
+                return null;
 
-                tree = new BinarySearchTree<T>(node);
-            }
+            IBinarySearchTree<T> tree = new BinarySearchTree<T>(node);
 
             return tree;
         }
