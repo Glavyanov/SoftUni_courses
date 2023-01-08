@@ -315,7 +315,7 @@
                 return nodeToDelete.Left;
             }
 
-            if (nodeToDelete.Value.Equals(element) && nodeToDelete.Left is null)
+            if (nodeToDelete.Value.Equals(element) && nodeToDelete.Left is null && nodeToDelete.Right.Left is null)
             {
                 return nodeToDelete.Right;
             }
