@@ -34,9 +34,7 @@
 
             T result = this.elements[0];
 
-            (this.elements[0], this.elements[this.Count - 1]) = (this.elements[this.Count - 1], this.elements[0]);
-            this.indexes[this.elements[0]] = 0;
-            this.indexes[this.elements[this.Count - 1]] = this.Count - 1;
+            this.Swap(0, this.Count - 1);
 
             this.elements.RemoveAt(this.Count - 1);
             this.indexes.Remove(result);
@@ -62,12 +60,23 @@
 
             while (this.IsValidIndex(smallerChildIndex) && this.elements[index].CompareTo(this.elements[smallerChildIndex]) > 0)
             {
-                (this.elements[index], this.elements[smallerChildIndex]) = (this.elements[smallerChildIndex], this.elements[index]);
-                this.indexes[this.elements[index]] = index;
-                this.indexes[this.elements[smallerChildIndex]] = smallerChildIndex;
+                this.Swap(index, smallerChildIndex);
 
                 index = smallerChildIndex;
                 smallerChildIndex = this.GetSmallerChildIndex(index);
+            }
+        }
+
+        protected void HeapifyUp(int index)
+        {
+            int parentIndex = (index - 1) / 2;
+
+            while (index > 0 && this.elements[index].CompareTo(this.elements[parentIndex]) < 0)
+            {
+                this.Swap(index, parentIndex);
+
+                index = parentIndex;
+                parentIndex = (index - 1) / 2;
             }
         }
 
@@ -95,22 +104,16 @@
             }
         }
 
-        protected void HeapifyUp(int index)
-        {
-            int parentIndex = (index - 1) / 2;
-
-            while (index > 0 && this.elements[index].CompareTo(this.elements[parentIndex]) < 0)
-            {
-                (this.elements[index], this.elements[parentIndex]) = (this.elements[parentIndex], this.elements[index]);
-                this.indexes[this.elements[index]] = index;
-                this.indexes[this.elements[parentIndex]] = parentIndex;
-                index = parentIndex;
-                parentIndex = (index - 1) / 2;
-            }
-        }
         private bool IsValidIndex(int index)
         {
             return index >= 0 && index < this.elements.Count;
+        }
+
+        private void Swap(int index, int temp)
+        {
+            (this.elements[index], this.elements[temp]) = (this.elements[temp], this.elements[index]);
+            this.indexes[this.elements[index]] = index;
+            this.indexes[this.elements[temp]] = temp;
         }
     }
 }
