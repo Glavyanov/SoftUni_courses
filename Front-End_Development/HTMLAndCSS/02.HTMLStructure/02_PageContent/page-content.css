@@ -1,0 +1,21 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: #CCCCCC;
+}
+
+.container article header h1{
+    font-size: 28px;
+}
+
+.container article header p{
+    font-style: italic;
+}
+
+.container article header ~ p{
+    font-size: 24px;
+}
+
+.container section {
+    margin-left: 20px;
+}
