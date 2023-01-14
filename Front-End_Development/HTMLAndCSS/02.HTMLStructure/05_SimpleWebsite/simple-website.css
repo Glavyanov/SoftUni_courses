@@ -43,8 +43,11 @@ body{
 
 footer {
     background-color: #444;
+    margin-top: 180px;
+}
+
+footer p {
     padding: 10px;
     text-align: center;
     color: #fff;
-    margin-top: 215px;
 }
