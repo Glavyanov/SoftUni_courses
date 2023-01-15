@@ -2,6 +2,8 @@ bin
 
 obj
 
+Certificates
+
 Config.cs
 
 appsettings.json
