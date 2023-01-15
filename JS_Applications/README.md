@@ -11,3 +11,5 @@
 10. Webpack
 
 ## Certificate
+
+![JS Applications - February 2022 - Certificate](https://user-images.githubusercontent.com/89041019/212564455-810b1f82-9f59-4302-8143-27f6308985e1.jpeg)
