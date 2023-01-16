@@ -18,8 +18,17 @@
     background-color: rgb(0, 102, 0);
 }
 
-a, span {
+span {
     padding: 0.5rem;
+}
+
+a {
+    border: 2px solid black;
+    font-size: 13px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display:inline-block;
+    width:80px;
+    height: 15px;
 }
 
 body {
