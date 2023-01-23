@@ -7,6 +7,7 @@ namespace _08.BruteForceAlg
     {
         private static int count = 0;
         private const int size = 5;
+
         static void Main(string[] args)
         {
             int[] input = Console.ReadLine()
