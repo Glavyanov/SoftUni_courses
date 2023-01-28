@@ -1,0 +1,46 @@
+html {
+    font-family: Helvetica, sans-serif;
+}
+
+header{
+    border-bottom: 3px solid black;
+    margin-top: 3rem;
+}
+
+.navigation {
+    display: inline-block;
+}
+
+.navigation__lists {
+    list-style: none;
+    font-size: 0px;
+    margin-left: 5rem;
+}
+
+.list {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 600;
+    
+}
+
+.list:not(:last-child){
+    margin-right: 30px;
+}
+
+.list__item {
+    text-decoration: none;
+    color :#1E720D;
+}
+
+h1:not(.main__head) {
+    display: inline-block;
+}
+
+.main__head {
+    font-weight: 100;
+}
+
+.main {
+    margin-top: 2rem;
+}
