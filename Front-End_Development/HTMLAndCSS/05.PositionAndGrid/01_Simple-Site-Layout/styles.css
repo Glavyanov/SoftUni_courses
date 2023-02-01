@@ -1,0 +1,58 @@
+body {
+    display: grid;
+    grid-template-columns: 100px auto;
+    grid-template-areas: 
+    "header header"
+    "aside main"
+    "footer footer";
+    gap: 10px;
+}
+
+.head h1 {
+
+    display: inline-block;
+    vertical-align: middle;
+    
+
+}
+
+.head{
+    grid-area: header;
+    background-color: rgb(181, 216, 255);
+    border-radius: 3px;
+    padding: 5px 10px;
+}
+
+.side-bar {
+    grid-area: aside;
+    background-color: rgb(181, 216, 255);
+    border-radius: 3px;
+    padding: 5px 10px;
+}
+
+.content {
+    grid-area: main;
+    background-color: rgb(181, 216, 255);
+    border-radius: 3px;
+    padding: 5px 10px;
+}
+
+.foot {
+    grid-area: footer;
+    background-color: rgb(181, 216, 255);
+    border-radius: 3px;
+    padding: 5px 10px;
+}
+
+.list{
+    list-style-type: none;
+    margin: 0px;
+    padding: 5px;
+}
+
+.item{
+    display: block;
+    text-decoration: none;
+    padding: 5px 0px;
+    color: rgb(86, 40, 129);
+}
