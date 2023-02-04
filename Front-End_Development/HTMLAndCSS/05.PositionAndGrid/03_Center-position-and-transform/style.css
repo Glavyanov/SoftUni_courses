@@ -1,0 +1,67 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: rgb(238, 238, 238);
+}
+
+.card {
+    background-color: rgb(255, 255, 255);
+    position: relative;
+    border-radius: 6px;
+    box-shadow: 0 3px 10px 8px rgb(0 0 0 / 0.2);
+    width: 500px;
+    height: 500px;
+    overflow: hidden;
+    margin: 3rem auto;
+}
+
+.content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.button {
+    background-color: rgb(0, 153, 0) ;
+    text-decoration: none;
+    color: azure;
+    position: relative;
+    bottom: 30px;
+    left: 370px;
+    display: inline-block;
+    width: 100px;
+    height: 30px;
+    border-radius: 4px;
+    text-align: center;
+    padding: 5px;
+}
+
+img {
+    position: absolute;
+    height: 280px;
+    width: 500px;
+}
+
+h3 {
+    font-family: Georgia, serif;
+    font-size: 1.2em;
+    position: relative;
+    left: 30px;
+    bottom: 50px;
+}
+
+p{
+    position: relative;
+    left: 30px;
+    bottom: 70px;
+    display: inline-block;
+    width: 410px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    
+}
