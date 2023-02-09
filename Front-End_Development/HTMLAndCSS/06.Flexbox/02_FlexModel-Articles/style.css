@@ -1,0 +1,28 @@
+html {
+    font-family: Helvetica, sans-serif;
+    line-height: 1.5rem;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    height: 100vh;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 70vw;
+    margin: auto;
+    justify-content: space-between;
+}
+
+h2 {
+    font-family: Georgia, serif;
+    line-height: 1.2rem;
+}
+
+.item {
+    width: 15rem;
+}
