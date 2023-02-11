@@ -27,16 +27,16 @@ ul {
 
 li {
     display: flex;
+    padding: 1rem;
     width: 18rem;
-    height: 31rem;
+    height: 28rem;
     background-color: #fff;
     border: 0.6rem solid #000;
     align-items: center;
     box-shadow: 1px 1px 20px 10px rgba(0, 0, 0, 0.3);
 }
+
  img {
-     height: 90%;
      width: 100%; 
-     object-fit: none;
-     padding: 1rem;
+     object-fit: contain;
  }
