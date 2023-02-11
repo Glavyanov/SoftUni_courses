@@ -1,0 +1,56 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.container {
+    margin: 3rem auto;
+    display: flex;
+    width: 100%;
+    max-width: 65vw;
+    align-items: center;
+    border: 1px solid black;
+}
+
+section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    height: 30rem;
+}
+
+span {
+    border: 1px solid black;
+    text-align: center;
+    padding: 20px;
+    height: 25%;
+    flex-shrink: 0;
+}
+
+.notes {
+    flex-direction: column;
+}
+
+.workweek,
+.weekend {
+    flex-basis: 100%;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.work-day {
+    flex-basis: calc(100%/5);
+}
+
+.weekend-day {
+    flex-basis: calc(100%/2);
+}
+
+.notes span{
+    flex-basis: calc(100%/2);
+    width: calc(65vw/4);
+    font-weight: 800;
+}

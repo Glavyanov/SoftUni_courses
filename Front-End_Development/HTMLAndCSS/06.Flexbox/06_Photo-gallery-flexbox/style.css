@@ -1,0 +1,42 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    background-color:  #eee;
+}
+
+.gallery {
+    width: 80%;
+    padding: 3rem;
+    margin: 0 auto;
+}
+
+ul {
+    width: 66rem;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 auto;
+    gap: 4rem;
+}
+
+li {
+    display: flex;
+    width: 18rem;
+    height: 31rem;
+    background-color: #fff;
+    border: 0.6rem solid #000;
+    align-items: center;
+    box-shadow: 1px 1px 20px 10px rgba(0, 0, 0, 0.3);
+}
+ img {
+     height: 90%;
+     width: 100%; 
+     object-fit: none;
+     padding: 1rem;
+ }
