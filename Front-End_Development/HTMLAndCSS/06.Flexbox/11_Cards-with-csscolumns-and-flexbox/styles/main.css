@@ -10,7 +10,7 @@ body {
 }
 
 body > h2 {
-    width: 681px;
+    width: 877px;
     margin: 60px auto 0 auto;
     padding-left: 20px;
 }
@@ -18,7 +18,7 @@ body > h2 {
 .cards-layout {
     margin: 0 auto;
     display: flex;
-    width: 681px;
+    width: 877px;
     flex-wrap: wrap;
     gap: 20px;
     padding: 20px;
@@ -31,10 +31,11 @@ body > h2 {
 
 h2 {
     flex-basis: 100%;
+    font-size: 36px;
 }
 
 .card {
-    width: 200px;
+    width: 263px;
     background-color: rgb(255, 255, 255);
     border: 2px solid rgb(205, 201, 201);
     border-radius: 6px;
@@ -50,7 +51,7 @@ h2 {
 footer {
     border-top: 2px solid rgb(205, 201, 201);
     height: 80px;
-    text-align: center;
+    text-align: left;
 }
 
 footer p {
