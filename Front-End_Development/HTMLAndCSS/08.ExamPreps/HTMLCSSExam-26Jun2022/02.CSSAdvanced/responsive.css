@@ -1,0 +1,91 @@
+@media screen and (max-width: 600px) {
+    body {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    main {
+        margin: 0;
+        width: unset;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    main section:nth-child(4) article {
+        width: 50%;
+    }
+
+    section {
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: unset;
+    }
+
+    main section.left-to-right:nth-child(3) {
+        padding: unset;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: unset;
+        height: 975px;
+    }
+
+    .left-to-right:first-child {
+        display: flex;
+        text-align: left;
+        justify-content: center;
+        padding: unset;
+        height: 592px;
+    }
+
+    .left-to-right article p {
+        padding: 0 40px;
+    }
+
+    main .left-to-right article {
+        border-radius: 20%;
+        padding: unset;
+        height: 384px;
+        width: 428px;
+    }
+
+    main section:nth-child(2) article {
+        padding: 0px 50px 0px 50px;
+    }
+
+    main section {
+        flex-direction: column;
+    }
+
+    form {
+        width: 100%;
+        font-size: 1.7rem;
+        text-align: center;
+    }
+
+    section form label input,
+    section form textarea {
+        width: 100%;
+        font-size: 17px;
+    }
+
+    main section:nth-child(2) button,
+    main section:nth-child(4) button {
+        display: none;
+    }
+
+    button {
+        display: none;
+    }
+}
