@@ -51,7 +51,7 @@ body {
 
 .head .head-img {
     width: 100%;
-    height: 530px;
+    height: 522px;
     object-fit: cover;
 }
 
@@ -86,7 +86,7 @@ body {
 .head .head-info p {
     font-size: 22px;
     width: 40%;
-    margin-top: 17px;
+    margin-top: 21px;
 }
 
 .head .head-info h1 {
@@ -117,6 +117,11 @@ body {
     border-radius: 4px;
     margin-bottom: 50px;
     font-family: 'PT Sans', sans-serif;
+}
+
+.head-info .heading.btn:hover{
+    background-color: transparent;
+    outline: 3px solid white;
 }
 
 .head-info .see .text {
@@ -172,7 +177,8 @@ main.content {
     font-weight: bold;
 }
 
-.content .heading {
+.content .heading,
+.foot .heading {
     font-size: 32px;
 }
 
@@ -210,4 +216,46 @@ main.content {
 
 .what .what-list li:not(:last-child) {
     margin-bottom: 14px;
+}
+
+.foot{
+    min-height: 59%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #b2f1dd;
+    gap: 50px;
+}
+
+.foot .assets h3{
+    font-size: 21px;
+    color: #20252d;
+}
+
+.foot{
+    padding: 26px 60px;
+}
+
+.foot .assets{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-around;
+    gap: 56px;
+}
+
+.foot .assets .item {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 27%;
+    text-align: center;
+}
+
+.foot .assets .item p{
+    margin-top: 3px;
+    line-height: 20px;
 }
