@@ -29,8 +29,10 @@ body {
 }
 
 .head .navigation .btn,
-.head-info .see.btn {
+.head-info .see.btn,
+.head-info .heading.btn {
     all: unset;
+    cursor: pointer;
 }
 
 .head .navigation .fab,
@@ -106,7 +108,6 @@ body {
 }
 
 .head-info .heading.btn {
-    all: unset;
     margin-top: 67px;
     font-size: 20px;
     color: white;
@@ -115,6 +116,7 @@ body {
     font-weight: bold;
     border-radius: 4px;
     margin-bottom: 50px;
+    font-family: 'PT Sans', sans-serif;
 }
 
 .head-info .see .text {
