@@ -1,0 +1,211 @@
+@import 'https://use.fontawesome.com/releases/v5.15.4/css/all.css';
+
+html {
+    font-family: 'PT Sans', sans-serif;
+}
+
+body {
+    width: calc(100% - 12%);
+    margin: 0 6%;
+}
+
+.head .navigation {
+    position: absolute;
+    width: 100%;
+    margin-top: 30px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-around;
+    gap: 286px;
+    z-index: 1;
+}
+
+.head .navigation a {
+    text-decoration: none;
+    color: white;
+}
+
+.head .navigation .btn,
+.head-info .see.btn {
+    all: unset;
+}
+
+.head .navigation .fab,
+.head .navigation i.fas {
+    margin-right: 5px;
+    font-size: 24px;
+}
+
+
+.head {
+    height: 70%;
+    margin: auto;
+    position: relative;
+    color: white;
+}
+
+.head .head-img {
+    width: 100%;
+    height: 530px;
+    object-fit: cover;
+}
+
+.head .head-info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    min-height: 59%;
+    z-index: 1;
+    margin-top: 14px;
+}
+
+.head::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: rgb(0, 0, 0);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 1) 24%, rgba(0, 0, 0, 0.8071603641456583) 61%, rgba(0, 0, 0, 0.4458158263305322) 99%);
+    top: 0px;
+    left: 0px;
+    opacity: 0.5;
+}
+
+.head .head-info p {
+    font-size: 22px;
+    width: 40%;
+    margin-top: 17px;
+}
+
+.head .head-info h1 {
+    font-size: 54px;
+}
+
+.head .head-info h1,
+.head .head-info p,
+.navigation .nav-link,
+.navigation .btn .text,
+.navigation .btn .fas,
+.head-info .see .text {
+    text-shadow: 0px 2px 3px black;
+}
+
+.navigation .nav-link,
+.navigation .btn .text {
+    font-size: 20px;
+}
+
+.head-info .heading.btn {
+    all: unset;
+    margin-top: 67px;
+    font-size: 20px;
+    color: white;
+    background-color: #00d08e;
+    padding: 6px 20px;
+    font-weight: bold;
+    border-radius: 4px;
+    margin-bottom: 50px;
+}
+
+.head-info .see .text {
+    font-size: 20px;
+    margin-right: 6px;
+}
+
+.head-info .heading-desc {
+    line-height: 27px;
+}
+
+.see.btn .fas {
+    font-size: 20px;
+    margin-left: 6px;
+}
+
+main.content {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.case {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.content .case .assets {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 17%;
+    justify-content: center;
+    align-items: center;
+    row-gap: 42px;
+    max-width: 92%;
+}
+
+.content .item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 13%;
+}
+
+.content .item p {
+    font-size: 21px;
+    text-align: center;
+    color: #00d08e;
+    font-weight: bold;
+}
+
+.content .heading {
+    font-size: 32px;
+}
+
+.content .sub-heading {
+    font-size: 21px;
+    color: #20252d;
+    width: 95%;
+    line-height: 26px;
+}
+
+.content .what p:not(.sub-heading) {
+    font-size: 18px;
+    color: #20252d;
+    display: inline;
+}
+
+.content i {
+    color: #00d08e;
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+.content .what {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-left: 67px;
+    margin-top: 24px;
+}
+
+.what .what-list {
+    margin-top: 34px;
+}
+
+.what .what-list li:not(:last-child) {
+    margin-bottom: 14px;
+}
