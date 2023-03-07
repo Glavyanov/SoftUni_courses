@@ -21,6 +21,22 @@ function App() {
 
     }, []);
 
+    const onUserCreateSubmit = async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.currentTarget);
+        const data = Object.fromEntries(formData);
+
+        const createdUser = await userService.create(data);
+
+        setUsers(state => [...state, createdUser]);
+    };
+
+    const onUserDelete = async (userId) => {
+        const result = await userService.remove(userId);
+        setUsers(state => state.filter(x => x._id !== userId));
+    };
+
     return (
         <>
             <Header />
@@ -28,8 +44,11 @@ function App() {
                 <section className="card users-container">
                     <Search />
 
-                    <UserList users={users} />
-                    <button className="btn-add btn">Add new user</button>
+                    <UserList
+                    users={users}
+                    onUserCreateSubmit={onUserCreateSubmit}
+                    onUserDelete={onUserDelete}
+                    />
                 </section>
             </main>
             <Footer />
