@@ -33,8 +33,20 @@ function App() {
     };
 
     const onUserDelete = async (userId) => {
-        const result = await userService.remove(userId);
+        
+        await userService.remove(userId);
         setUsers(state => state.filter(x => x._id !== userId));
+    };
+
+    const onUserUpdateSubmit = async (e, userId) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.currentTarget);
+        const data = Object.fromEntries(formData);
+
+        const updatedUser = await userService.update(userId, data);
+
+        setUsers(state => state.map(x => x._id === userId ? updatedUser : x));
     };
 
     return (
@@ -48,6 +60,7 @@ function App() {
                     users={users}
                     onUserCreateSubmit={onUserCreateSubmit}
                     onUserDelete={onUserDelete}
+                    onUserUpdateSubmit={onUserUpdateSubmit}
                     />
                 </section>
             </main>

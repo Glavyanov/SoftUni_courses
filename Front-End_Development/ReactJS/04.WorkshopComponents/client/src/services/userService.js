@@ -43,4 +43,27 @@ export const remove = async (userId) => {
     const result = await responce.json();
 
     return result;
-}
+};
+
+export const update = async (userId, userData) => {
+
+    const {country, city, street, streetNumber, ...data} = userData;
+    data.address = {
+        country,
+        city,
+        street,
+        streetNumber
+    };
+
+    const responce = await fetch(`${baseUrl}/${userId}`, {
+        method: 'PUT',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+
+    const result = await responce.json();
+
+    return result.user;
+};

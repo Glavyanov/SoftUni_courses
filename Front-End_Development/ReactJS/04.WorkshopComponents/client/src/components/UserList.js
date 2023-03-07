@@ -5,15 +5,18 @@ import { User } from "./User";
 import { UserCreate } from './UserCreate';
 import { UserDelete } from './UserDelete';
 import { UserDetails } from './UserDetails';
+import { UserEdit } from './UserEdit';
 
 export const UserList = ({
     users,
     onUserCreateSubmit,
     onUserDelete,
+    onUserUpdateSubmit,
 }) => {
 
     const [selectedUser, setSelectedUser] = useState(null);
     const [deleteUserId, setDeleteUserId] = useState(null);
+    const [showEditUser, setshowEditUser] = useState(null);
     const [showDeleteUser, setShowDeleteUser] = useState(false);
     const [showAddUser, setShowAddUser] = useState(false);
 
@@ -27,7 +30,7 @@ export const UserList = ({
         setSelectedUser(null);
         setShowAddUser(false);
         setShowDeleteUser(false);
-
+        setshowEditUser(null);
     };
 
     const onUserAddClick = () => {
@@ -49,11 +52,23 @@ export const UserList = ({
         onCloseHandler();
     };
 
+    const onEditClick = async (userId) => {
+        const user = await userService.getOne(userId);
+        
+        setshowEditUser(user);
+    };
+
+    const onEditHandler = (e, userId) => {
+        onUserUpdateSubmit(e, userId);
+        setshowEditUser(null);
+    };
+
     return (
         <>
             {selectedUser && <UserDetails {...selectedUser} onCloseHandler={onCloseHandler} />}
             {showAddUser && <UserCreate onCloseHandler={onCloseHandler} onUserCreateSubmit={OnUserCreateSubmitHandler} />}
             {showDeleteUser && <UserDelete onCloseHandler={onCloseHandler} onDelete={() => onDeleteHandler(deleteUserId._id)}/>}
+            {showEditUser && <UserEdit user={showEditUser} onCloseHandler={onCloseHandler} onUserUpdateSubmit={onEditHandler}/>}
             <div className="table-wrapper">
 
                 {/* <div className="loading-shade"> 
@@ -182,6 +197,7 @@ export const UserList = ({
                                 {...u}
                                 onInfoClick={onInfoClick}
                                 onDeleteClick={onDeleteClick}
+                                onEditClick={onEditClick}
                             />)}
                     </tbody>
                 </table>
