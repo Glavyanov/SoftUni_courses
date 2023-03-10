@@ -1,4 +1,5 @@
 import { formatDate } from './User';
+import { Link } from 'react-router-dom';
 
 export const UserDetails = ({
     _id,
@@ -48,6 +49,7 @@ export const UserDetails = ({
 
                             <p>Created on: <strong>{formatDate(createdAt)}</strong></p>
                             <p>Modified on: <strong>{formatDate(updatedAt)}</strong></p>
+                            <Link to="/items"><button type='button' style={{cursor: "pointer"}}>Get Items</button></Link>
                         </div>
                     </div>
                 </div>

@@ -67,7 +67,7 @@ export const UserList = ({
         <>
             {selectedUser && <UserDetails {...selectedUser} onCloseHandler={onCloseHandler} />}
             {showAddUser && <UserCreate onCloseHandler={onCloseHandler} onUserCreateSubmit={OnUserCreateSubmitHandler} />}
-            {showDeleteUser && <UserDelete onCloseHandler={onCloseHandler} onDelete={() => onDeleteHandler(deleteUserId._id)}/>}
+            {showDeleteUser && <UserDelete onCloseHandler={onCloseHandler} onDelete={() => onDeleteHandler(deleteUserId._id)} />}
             {showEditUser && <UserEdit user={showEditUser} onCloseHandler={onCloseHandler} onUserUpdateSubmit={onEditHandler}/>}
             <div className="table-wrapper">
 
