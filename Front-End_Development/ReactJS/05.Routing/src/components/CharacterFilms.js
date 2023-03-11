@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import styles from './Navigation.module.css';
+
 
 const baseUrl = 'https://swapi.dev/api';
 
@@ -24,7 +26,7 @@ export const CharacterFilms = () => {
                 {films.map(x => {
                     const id = x.url.split('/').filter(x => x).pop();
 
-                    return <li key={id}><Link to={`/films/${id}`} style={{textDecoration:"none"}}>{x.title}</Link></li>
+                    return <li key={id}><Link className={styles['hoverClassColor']} to={`/films/${id}`} style={{textDecoration:"none", color:"bisque", "--hover-color":"cyan"}}>{x.title}</Link></li>
                 }
                 )}
             </ul>

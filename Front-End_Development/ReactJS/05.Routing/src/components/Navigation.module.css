@@ -20,3 +20,7 @@
 .nav-non-active {
     color: rgb(194, 194, 170) !important;
 }
+
+.hoverClassColor:hover {
+    color: var(--hover-color) !important;
+}
