@@ -1,0 +1,22 @@
+.navigation li {
+    list-style: none;
+    display: inline;
+    margin-left: 30px;
+}
+
+.navigation li:hover {
+    text-decoration: underline;
+}
+
+.navigation a {
+    color: white;
+    text-decoration: none;
+}
+
+.nav-active {
+    color: orange !important;
+}
+
+.nav-non-active {
+    color: rgb(194, 194, 170) !important;
+}
