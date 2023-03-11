@@ -15,17 +15,19 @@ export const CharacterFilms = () => {
                 setFilms(data.results);
             })
     }, [characterId]);
-    
+
 
     return (
         <>
             <h1>Character Films</h1>
+            <ul style={{listStyle:"none"}}>
+                {films.map(x => {
+                    const id = x.url.split('/').filter(x => x).pop();
 
-            {films.map(x => {
-                const id = x.url.split('/').filter(x => x).pop();
-
-                return <li key={id}><Link to={`/films/${id}`}>{x.title}</Link></li>}
-            )}
+                    return <li key={id}><Link to={`/films/${id}`} style={{textDecoration:"none"}}>{x.title}</Link></li>
+                }
+                )}
+            </ul>
         </>
     );
 };
