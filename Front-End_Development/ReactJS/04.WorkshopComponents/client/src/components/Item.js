@@ -30,7 +30,7 @@ export const Item = ({
 
                             <p>Created on: <strong>{formatDate(createdAt)}</strong></p>
                             <p>Modified on: <strong>{formatDate(updatedAt)}</strong></p>
-                            <Link to="/" ><button type='button' style={{cursor: "pointer"}}>Back</button></Link>
+                            <Link to="/" ><button type='button' style={{cursor: "pointer", marginTop: "20px"}}>Back</button></Link>
                         </div>
                     </div>
                 </div>

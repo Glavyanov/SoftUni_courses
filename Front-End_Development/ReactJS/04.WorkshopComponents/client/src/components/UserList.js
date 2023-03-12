@@ -12,6 +12,10 @@ export const UserList = ({
     onUserCreateSubmit,
     onUserDelete,
     onUserUpdateSubmit,
+    formValues,
+    formChangeHandler,
+    formErrors,
+    resetFormValues,
 }) => {
 
     const [selectedUser, setSelectedUser] = useState(null);
@@ -34,6 +38,7 @@ export const UserList = ({
     };
 
     const onUserAddClick = () => {
+        resetFormValues();
         setShowAddUser(true);
     };
 
@@ -66,7 +71,13 @@ export const UserList = ({
     return (
         <>
             {selectedUser && <UserDetails {...selectedUser} onCloseHandler={onCloseHandler} />}
-            {showAddUser && <UserCreate onCloseHandler={onCloseHandler} onUserCreateSubmit={OnUserCreateSubmitHandler} />}
+            {showAddUser && <UserCreate
+                                onCloseHandler={onCloseHandler}
+                                onUserCreateSubmit={OnUserCreateSubmitHandler}
+                                formValues={formValues}
+                                formChangeHandler={formChangeHandler}
+                                formErrors={formErrors}
+                            />}
             {showDeleteUser && <UserDelete onCloseHandler={onCloseHandler} onDelete={() => onDeleteHandler(deleteUserId._id)} />}
             {showEditUser && <UserEdit user={showEditUser} onCloseHandler={onCloseHandler} onUserUpdateSubmit={onEditHandler}/>}
             <div className="table-wrapper">

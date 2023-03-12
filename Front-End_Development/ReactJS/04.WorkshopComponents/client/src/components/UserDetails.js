@@ -49,7 +49,7 @@ export const UserDetails = ({
 
                             <p>Created on: <strong>{formatDate(createdAt)}</strong></p>
                             <p>Modified on: <strong>{formatDate(updatedAt)}</strong></p>
-                            <Link to="/items"><button type='button' style={{cursor: "pointer"}}>Get Items</button></Link>
+                            <Link to="/items"><button type='button' style={{cursor: "pointer", marginTop: "20px"}} onClick={() => onCloseHandler()}>Get Items</button></Link>
                         </div>
                     </div>
                 </div>
