@@ -1,4 +1,7 @@
+using Microsoft.EntityFrameworkCore;
 using WebShopDemo.Core.Contracts;
+using WebShopDemo.Core.Data;
+using WebShopDemo.Core.Data.Common;
 using WebShopDemo.Core.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +26,12 @@ builder.Services.AddSwaggerGen(c =>
     c.IncludeXmlComments("WebShopApiDocumentation.xml");
 });
 
+builder.Configuration.AddUserSecrets("aspnet-WebShopDemo-F274AD50-FBB7-4413-9D8D-0AC4C8B89766");
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<ApplicationDemoDbContext>(options =>
+    options.UseSqlServer(connectionString));
+
+builder.Services.AddScoped<IRepository, Repository>();
 builder.Services.AddScoped<IProductService, ProductService>();
 
 var app = builder.Build();

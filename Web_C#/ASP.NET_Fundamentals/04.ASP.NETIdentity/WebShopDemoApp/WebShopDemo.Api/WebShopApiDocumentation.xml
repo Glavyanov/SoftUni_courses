@@ -4,9 +4,14 @@
         <name>WebShopDemo.Api</name>
     </assembly>
     <members>
+        <member name="T:WebShopDemo.Api.Controllers.ProductController">
+            <summary>
+            Public Controller for product
+            </summary>
+        </member>
         <member name="M:WebShopDemo.Api.Controllers.ProductController.#ctor(WebShopDemo.Core.Contracts.IProductService)">
             <summary>
-            
+            ProductController public ctor
             </summary>
             <param name="_productService"></param>
         </member>
@@ -15,6 +20,18 @@
             Get All products
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:WebShopDemo.Api.Controllers.ProductController.GetAllStartingWithG">
+            <summary>
+            Get All products starting witn G
+            </summary>
+            <returns>IEnumerable<![CDATA[<ProductDto>]]></returns>
+        </member>
+        <member name="M:WebShopDemo.Api.Controllers.ProductController.GetAllWithPriceGreaterThanOrEqual50">
+            <summary>
+            Get All products witn price greater than or equal to 50
+            </summary>
+            <returns>IEnumerable<![CDATA[<ProductDto>]]></returns>
         </member>
     </members>
 </doc>
