@@ -9,3 +9,5 @@
 8.  Advanced Techniques
 
 ## Certificate
+
+![ReactJS - February 2023 - Certificate](https://user-images.githubusercontent.com/89041019/233168848-bcfada15-f68e-43be-8aed-35f4d8d30b3e.jpeg)
