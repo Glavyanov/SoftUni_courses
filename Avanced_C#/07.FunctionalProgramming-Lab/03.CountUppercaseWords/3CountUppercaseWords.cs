@@ -7,8 +7,8 @@ namespace _03.CountUppercaseWords
     {
         static void Main(string[] args)
         {
-            FirstSolution();
-            // AnotherSolution();
+            //FirstSolution();
+            AnotherSolution();
             
         }
 
@@ -24,12 +24,12 @@ namespace _03.CountUppercaseWords
 
         private static void AnotherSolution()
         {
-            Predicate<string> IsFirstLetterCapital = str => str[0] == str.ToUpper()[0];
+            Func<string,bool> IsFirstLetterCapital = str => str[0] == str.ToUpper()[0];
             Console.ReadLine()
                    .Split(" ", StringSplitOptions.RemoveEmptyEntries)
-                   .Where(x => IsFirstLetterCapital(x))
+                   .Where(IsFirstLetterCapital)
                    .ToList()
-                   .ForEach(x => Console.WriteLine(x));
+                   .ForEach(Console.WriteLine);
         }
     }
 }
