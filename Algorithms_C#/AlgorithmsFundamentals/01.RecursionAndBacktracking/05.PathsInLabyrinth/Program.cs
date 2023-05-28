@@ -15,34 +15,25 @@ namespace _05.PathsInLabyrinth
 
             FillLab(row, col, lab);
 
-            List<string> paths = new List<string>();
-
-            PrintPaths(lab, paths, 0, 0, string.Empty);
+            PrintPaths(lab, new List<string>());
         }
 
-        private static void PrintPaths(char[,] lab, List<string> paths, int row, int col, string direction)
+        private static void PrintPaths(char[,] lab, List<string> paths, int row = 0, int col = 0, string direction = "")
         {
+            if (IsInvalidPath(row, col, lab)) return;
 
-            if (IsInvalidPath(row, col, lab))
-            {
-                return;
-            }
+            if (lab[row, col] is '*' || lab[row, col] is 'v') return;
+
+            paths.Add(direction);
 
             if (lab[row, col] is 'e')
             {
-                paths.Add(direction);
                 Console.WriteLine(string.Join(string.Empty, paths));
                 paths.RemoveAt(paths.Count - 1);
                 return;
             }
 
-            if (lab[row, col] is '*' || lab[row, col] is 'v')
-            {
-                return;
-            }
-
             lab[row, col] = 'v';
-            paths.Add(direction);
 
             PrintPaths(lab, paths, row, col + 1, "R");
             PrintPaths(lab, paths, row + 1, col, "D");
@@ -50,6 +41,7 @@ namespace _05.PathsInLabyrinth
             PrintPaths(lab, paths, row - 1, col, "U");
 
             paths.RemoveAt(paths.Count - 1);
+
             if (lab[row, col] is 'v')
             {
                 lab[row, col] = '-';
