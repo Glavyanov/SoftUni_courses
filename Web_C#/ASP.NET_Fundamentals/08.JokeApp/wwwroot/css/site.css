@@ -1,0 +1,27 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
+
+#headingJokes {
+    color: red;
+    animation: flip; /* referring directly to the animation's keyframe declaration */ /* backInDown jello tada rubberBand headShake flash shakeX*/
+    animation-duration: 4s;
+    font-size: 86px;
+}
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
