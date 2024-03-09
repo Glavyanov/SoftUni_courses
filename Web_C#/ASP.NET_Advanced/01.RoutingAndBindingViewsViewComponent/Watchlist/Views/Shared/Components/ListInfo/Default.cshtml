@@ -1,0 +1,13 @@
+﻿@using Watchlist.Data.Models;
+@model IEnumerable<TestTitleDto>
+
+<aside style="float: right;">
+    <h3>Film Titles</h3>
+    <label for="filmsList">Films</label>
+    <select id="filmsList">
+        @foreach (var item in @Model)
+        {
+            <option value="@item.Id">@item.Title</option>
+        }
+    </select>
+</aside>
