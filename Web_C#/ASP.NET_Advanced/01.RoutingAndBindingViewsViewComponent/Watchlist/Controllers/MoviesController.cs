@@ -26,7 +26,7 @@ namespace Watchlist.Controllers
         }
 
         [HttpGet]
-        [MyAction] // Test filter not work
+        [MyAction]
         public async Task<IActionResult> Add()
         {
             var model = new AddMovieViewModel()
